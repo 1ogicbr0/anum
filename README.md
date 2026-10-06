@@ -67,7 +67,7 @@ signature per section so no two sections move alike:
 | Signet | band irises open, ring spins in (elastic) and keeps floating, title engraves letter by letter | — |
 | Gold & silver | photo wipes open from its centre, finishes slide in from either side | card lifts, eyebrow letters spread |
 | Gifting | title words lift and cool from gold to plum, chips file in, each photo is unveiled like a lid lifting | photos drift, cards lift |
-| Video strip | clips are dealt out of a stack into the row | — |
+| Video strip | title words glide in, clips roll in from the right like a film strip, play buttons pop | — |
 | Reviews | cards tossed down with alternating spin, quotes sharpen into focus | — |
 | Instagram | avatar spins in, tiles bloom from the centre of the grid | — |
 | Order band | headline ripples out from its middle, button glows while in view | — |

@@ -43,6 +43,11 @@ function textInk(target, vars = {}) {
   const split = new SplitText(target, { type: 'words,chars' })
   return gsap.from(split.chars, { opacity: 0, scale: 1.3, filter: 'blur(4px)', duration: 0.5, ease: 'power2.out', stagger: { each: 0.03, from: 'random' }, onComplete: () => split.revert(), ...vars })
 }
+// words glide in from the right one after another, like frames on a strip (videos)
+function textSlide(target, vars = {}) {
+  const split = new SplitText(target, { type: 'words' })
+  return gsap.from(split.words, { x: 44, opacity: 0, duration: 0.8, ease: 'power3.out', stagger: 0.09, onComplete: () => split.revert(), ...vars })
+}
 // letters settle together (gold & silver)
 function textTrack(target, vars = {}) {
   return gsap.from(target, { letterSpacing: '0.18em', opacity: 0, duration: 1.1, ease: 'power3.out', ...vars })
@@ -300,12 +305,15 @@ export function gifting(el) {
   return () => offs.forEach((off) => off())
 }
 
-// 9. Video strip: the clips are dealt out of a stack, fanning into the row.
+// 9. Video strip: the title glides in word by word, then the clips roll in from the right like a film
+// strip, each poster easing out of a slight zoom as its play button pops.
 export function videoStrip(el) {
   const items = q(el, '[data-anim=scroller] > *')
   const tl = gsap.timeline({ scrollTrigger: enter(el) })
-  heading(el, textLines, tl)
-  tl.from(items, { x: (i) => -i * 40, rotation: (i) => (i - items.length / 2) * 4, scale: 0.85, opacity: 0, transformOrigin: '50% 120%', duration: 1.1, stagger: 0.05, clearProps: stay }, 0.2)
+  heading(el, textSlide, tl)
+  tl.from(items, { x: 160, opacity: 0, duration: 1, ease: 'power3.out', stagger: 0.07, clearProps: stay }, 0.2)
+    .fromTo(q(el, '[data-anim=scroller] video'), { scale: 1.15 }, { scale: 1, duration: 1.4, ease: 'expo.out', stagger: 0.07, clearProps: 'transform' }, 0.25)
+    .from(q(el, '[data-anim=scroller] button[aria-label^="Play"]'), { scale: 0, opacity: 0, duration: 0.6, ease: 'back.out(2.5)', stagger: 0.07, clearProps: 'all' }, 0.6)
 }
 
 // 10. Reviews: cards are tossed onto the table with alternating spin; each quote sharpens into focus.
