@@ -258,7 +258,8 @@ h3 {
 
 // Everything inside a page section is lifted above the cursor glow (z-index 1), so the glow
 // shows on the section backgrounds and disappears behind cards, photos and text.
-main > * > * {
+main > * > *,
+footer > * {
   position: relative;
   z-index: 2;
 }

@@ -1,4 +1,7 @@
 .bar {
+  // Above the cursor glow (z-index 1), like the header.
+  position: relative;
+  z-index: 51;
   background: $plum;
   color: $white;
   font-size: 13px;
