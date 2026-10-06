@@ -6,7 +6,8 @@ import s from './HighlightClip.module.scss'
 /**
  * A story clip saved from one of @musebyanum's Instagram highlights, served from
  * /public/videos/highlights. Tap to play (with sound), tap again to pause. Only one
- * clip plays at a time; the poster frame shows until then so nothing downloads early.
+ * clip plays at a time, and a clip pauses itself when it scrolls out of view or the tab is
+ * hidden; the poster frame shows until then so nothing downloads early.
  * While playing, the badge in the corner counts down the seconds left and a story-style
  * progress bar fills along the top. Most stories are a photo with a music track
  * (clip.motion is false): those are labelled "Photo + music" and the photo itself is
@@ -32,6 +33,33 @@ export default function HighlightClip({ clip, compact = false, ratio = '9 / 16',
     }
     window.addEventListener('muse:clip-play', onOther)
     return () => window.removeEventListener('muse:clip-play', onOther)
+  }, [])
+
+  // Pause when the clip leaves the viewport (scrolled past, or swiped away in the home
+  // strip) or when the tab goes to the background, so sound never carries on unseen.
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return undefined
+    let io
+    if (typeof IntersectionObserver !== 'undefined') {
+      io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting && !el.paused) el.pause()
+          })
+        },
+        { threshold: 0.35 },
+      )
+      io.observe(el)
+    }
+    const onVisibility = () => {
+      if (document.hidden && !el.paused) el.pause()
+    }
+    document.addEventListener('visibilitychange', onVisibility)
+    return () => {
+      io?.disconnect()
+      document.removeEventListener('visibilitychange', onVisibility)
+    }
   }, [])
 
   const toggle = () => {
