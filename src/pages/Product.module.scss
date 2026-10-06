@@ -300,28 +300,6 @@
   font-weight: 600;
 }
 
-.msgPreview {
-  border: 0 !important;
-
-  summary {
-    min-height: 36px;
-    font-size: 13px;
-    font-weight: 600;
-    color: $purple;
-    justify-content: center;
-    gap: 6px;
-  }
-
-  pre {
-    margin: 4px 0 0;
-    white-space: pre-wrap;
-    font: 13px/1.6 $font-body;
-    color: $muted;
-    background: $lilac-100;
-    border-radius: 12px;
-    padding: 12px 14px;
-  }
-}
 
 .mainClip {
   border-radius: 28px;

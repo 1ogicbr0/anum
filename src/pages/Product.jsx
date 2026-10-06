@@ -15,7 +15,7 @@ import { products, productBySlug } from '@/data/products'
 import { clipBySlug } from '@/data/videos'
 import { useDocumentTitle } from '@/hooks/useDocumentTitle'
 import { useWishlist } from '@/hooks/useWishlist'
-import { buildOrderMessage, formatInitials, formatPrice, orderChannel } from '@/utils/order'
+import { formatInitials, formatPrice } from '@/utils/order'
 import s from './Product.module.scss'
 
 export default function Product() {
@@ -190,10 +190,6 @@ export default function Product() {
 
             <div className={s.ctas}>
               <OrderButton context={{ product, finish, initials, size }} />
-              <details className={s.msgPreview}>
-                <summary>Preview the message we will {orderChannel() === 'instagram' ? 'copy for you' : 'send'}</summary>
-                <pre>{buildOrderMessage({ product, finish, initials, size })}</pre>
-              </details>
               <Button variant="outline" onClick={() => toggle(product.slug)} aria-pressed={saved}>
                 <Icon name="heart" style={saved ? { fill: 'currentColor' } : undefined} /> {saved ? 'Saved to wishlist' : 'Save to wishlist'}
               </Button>
