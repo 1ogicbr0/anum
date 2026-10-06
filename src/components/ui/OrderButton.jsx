@@ -1,37 +1,42 @@
+import { useCallback, useState } from 'react'
 import Button from './Button'
 import Icon from './Icon'
-import { showToast } from '@/utils/toast'
+import OrderSheet, { copyText } from './OrderSheet'
 import { buildOrderLink, buildOrderMessage, orderChannel, orderLabel } from '@/utils/order'
 
 /**
  * An order button that opens the chat with a message written for the place it was
- * pressed. WhatsApp links carry the text themselves; Instagram DM links cannot, so the
- * message is copied to the clipboard and the customer pastes it into the chat.
+ * pressed. WhatsApp links carry the text themselves, so the button is a plain link.
+ * Instagram DM links cannot, so the button copies the message, shows it in a sheet
+ * and lets the customer open the DM from there and paste it in.
  *
  * scenario + context are passed straight to buildOrderMessage().
  */
 export default function OrderButton({ scenario, context, children, icon = true, ...rest }) {
   const opts = { scenario, ...(context ?? {}) }
   const message = buildOrderMessage(opts)
-  const href = buildOrderLink(opts)
   const instagram = orderChannel() === 'instagram'
+  const [sheet, setSheet] = useState(null)
+  const close = useCallback(() => setSheet(null), [])
 
-  const onClick = () => {
-    if (!instagram) return
-    const write = navigator.clipboard?.writeText?.bind(navigator.clipboard)
-    if (!write) {
-      showToast('Instagram is opening. Tell us what you were looking at and we will take it from there.')
-      return
-    }
-    write(message)
-      .then(() => showToast('Your message is copied. Paste it into the Instagram chat and send.'))
-      .catch(() => showToast('Instagram is opening. Tell us what you were looking at and we will take it from there.'))
+  if (!instagram) {
+    return (
+      <Button href={buildOrderLink(opts)} {...rest}>
+        {icon && <Icon name="chat" />}
+        {children ?? orderLabel()}
+      </Button>
+    )
   }
 
+  const open = () => setSheet({ copied: copyText(message) })
+
   return (
-    <Button href={href} onClick={onClick} {...rest}>
-      {icon && <Icon name={instagram ? 'instagram' : 'chat'} />}
-      {children ?? orderLabel()}
-    </Button>
+    <>
+      <Button onClick={open} {...rest}>
+        {icon && <Icon name="instagram" />}
+        {children ?? orderLabel()}
+      </Button>
+      {sheet && <OrderSheet message={message} copied={sheet.copied} onCopy={() => setSheet({ copied: copyText(message) })} onClose={close} />}
+    </>
   )
 }

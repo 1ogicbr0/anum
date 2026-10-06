@@ -76,10 +76,16 @@ each linking to its post.
 
 ## Ordering messages
 
+Instagram DM links cannot carry text, so pressing an Instagram order button copies the scenario's
+message (synchronously, inside the tap) and opens `OrderSheet`: the message is shown, already on the
+clipboard, with "Open Instagram DM" and "Copy again" buttons. When `brand.whatsappNumber` is set the
+button becomes a plain WhatsApp link with the text prefilled. `vercel.json` rewrites every path to
+`index.html` so React Router deep links work on Vercel.
+
 Every order button is an `OrderButton` with a `scenario` (hero, product, category, collection,
 wishlist, gifting, size-help) so the message already says what the customer was looking at.
-WhatsApp receives the text in the link; Instagram DM links cannot carry text, so the message is
-copied to the clipboard with a toast and the product page shows a preview of it.
+WhatsApp receives the text in the link; for Instagram the sheet described above takes over, and the
+product page also shows a preview of the message under the button.
 
 ## Photography
 
