@@ -53,6 +53,8 @@ const clip = (slug, highlight, duration, date, title, extra = {}) => ({
 })
 
 // Every story in the highlights, in highlight order, oldest first within each.
+// Most stories are photos that Instagram exported as a video with a music track (the frame never
+// changes); `motion: true` marks the ones that are real footage.
 export const clips = [
   clip('rings-01', 'rings', 9, '12 Sept 2026', 'Lilac Éclat: seven rings, seven moods', { featured: true }),
   clip('rings-02', 'rings', 15, '15 Sept 2026', 'Pearl Muse Ring, with white blooms', { featured: true }),
@@ -60,7 +62,7 @@ export const clips = [
   clip('rings-04', 'rings', 8, '28 Sept 2026', 'Last piece left: stacked gold rings'),
   clip('earrings-01', 'earrings', 9, '14 Sept 2026', 'Starlit hoops in the mirror', { featured: true }),
   clip('earrings-02', 'earrings', 8, '21 Sept 2026', 'Guess the price: Long Tassel Earrings'),
-  clip('earrings-03', 'earrings', 8, '28 Sept 2026', 'Golden Petal studs, now in the shop'),
+  clip('earrings-03', 'earrings', 8, '28 Sept 2026', 'Golden Petal studs, now in the shop', { motion: true }),
   clip('sets-01', 'sets', 9, '13 Sept 2026', 'Amour Éclat heart set in Muse Silver', { featured: true }),
   clip('sets-03', 'sets', 8, '16 Sept 2026', 'The Pearl Choker Heart Set'),
   clip('sets-05', 'sets', 8, '22 Sept 2026', 'Floral Duo: mirror check'),
@@ -72,11 +74,11 @@ export const clips = [
   clip('handchains-01', 'handchains', 15, '18 Sept 2026', 'Isla hand chain, cocktail hour', { featured: true }),
   clip('pendants-01', 'pendants', 9, '14 Sept 2026', 'White Glow pendants on driftwood', { featured: true }),
   clip('anklets-01', 'anklets', 9, '14 Sept 2026', 'Heart Muse Anklet, just in at PKR 1,299'),
-  clip('reviews-01', 'reviews', 20, '30 Sept 2026', 'Quality 10/10. Loving it. Highly recommended.', { by: '@irhaismyname', featured: true }),
+  clip('reviews-01', 'reviews', 20, '30 Sept 2026', 'Quality 10/10. Loving it. Highly recommended.', { motion: true, by: '@irhaismyname', featured: true }),
   clip('reviews-03', 'reviews', 20, '2 Oct 2026', 'Everyone is asking me about this ring', { by: '@shanzey_dabeer' }),
-  clip('pr-01', 'pr', 60, '27 Sept 2026', 'Gift for my sister: a MUSE unboxing', { by: '@shanzae.zia' }),
-  clip('pr-02', 'pr', 10, '5 Oct 2026', 'The MUSE box arrives', { by: '@maheen__rahim' }),
-  clip('pr-03', 'pr', 5, '5 Oct 2026', 'Such lovely jewellery, perfect for every look', { by: '@maheen__rahim' }),
+  clip('pr-01', 'pr', 60, '27 Sept 2026', 'Gift for my sister: a MUSE unboxing', { motion: true, by: '@shanzae.zia' }),
+  clip('pr-02', 'pr', 10, '5 Oct 2026', 'The MUSE box arrives', { motion: true, by: '@maheen__rahim' }),
+  clip('pr-03', 'pr', 5, '5 Oct 2026', 'Such lovely jewellery, perfect for every look', { motion: true, by: '@maheen__rahim' }),
 ]
 
 export const clipBySlug = Object.fromEntries(clips.map((c) => [c.slug, c]))

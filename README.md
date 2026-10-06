@@ -39,7 +39,9 @@ Styling: SCSS modules per component. Tokens and mixins are injected into every `
   logged in to Instagram and lives in `public/videos/highlights` (mp4 + poster jpg) and
   `public/images/stories`. They are listed in `src/data/videos.js` (`clips`, `storyImages`,
   `highlights`) and played by `src/components/videos/HighlightClip.jsx`: tap to play with sound,
-  one clip at a time, nothing downloads until tapped. They appear on the home page strip, the
+  one clip at a time, nothing downloads until tapped. Note that most highlight stories are photos that
+  Instagram exported as video with a music track, so the frame does not change while they play;
+  clips with real footage carry `motion: true` and are labelled "Video" instead of "Photo + music". They appear on the home page strip, the
   Videos page (with the reels), the Reviews section (Muse Reviews / Muse PR stories) and on product
   pages that have a `video` field ("See it in motion").
 - **Every carousel slide** — all 25 posts were re-fetched at full resolution (1080px), including every

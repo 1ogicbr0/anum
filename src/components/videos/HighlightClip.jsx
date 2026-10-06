@@ -7,6 +7,9 @@ import s from './HighlightClip.module.scss'
  * A story clip saved from one of @musebyanum's Instagram highlights, served from
  * /public/videos/highlights. Tap to play (with sound), tap again to pause. Only one
  * clip plays at a time; the poster frame shows until then so nothing downloads early.
+ * Most stories are a photo with a music track (clip.motion is false): they are labelled
+ * "Photo + music", get a slow zoom and an equaliser while playing so the sound is
+ * visibly the point. Real footage is labelled "Video".
  */
 export default function HighlightClip({ clip, compact = false, className = '' }) {
   const ref = useRef(null)
@@ -14,6 +17,7 @@ export default function HighlightClip({ clip, compact = false, className = '' })
   const [muted, setMuted] = useState(false)
   const cat = videoCategoryBySlug[clip.category]
   const highlight = highlightBySlug[clip.highlight]
+  const isPhoto = !clip.motion
 
   useEffect(() => {
     const el = ref.current
@@ -38,7 +42,7 @@ export default function HighlightClip({ clip, compact = false, className = '' })
 
   return (
     <article className={`${s.card} ${compact ? s.compact : ''} ${className}`}>
-      <div className={`${s.frame} ${playing ? s.playing : ''}`}>
+      <div className={`${s.frame} ${playing ? s.playing : ''} ${isPhoto ? s.photo : ''}`}>
         <video
           ref={ref}
           src={clip.src}
@@ -55,7 +59,11 @@ export default function HighlightClip({ clip, compact = false, className = '' })
         <button type="button" className={s.play} aria-label={playing ? `Pause: ${clip.title}` : `Play: ${clip.title}`} onClick={toggle}>
           <Icon name={playing ? 'pause' : 'play'} size={24} />
         </button>
+        <span className={s.kind}>{isPhoto ? 'Photo + music' : 'Video'}</span>
         <span className={s.dur}>{clip.duration}s</span>
+        {playing && isPhoto && (
+          <span className={s.eq} aria-hidden="true"><i /><i /><i /></span>
+        )}
         {playing && (
           <button type="button" className={s.sound} aria-label={muted ? 'Unmute' : 'Mute'} aria-pressed={muted} onClick={() => setMuted((m) => !m)}>
             {muted ? 'Muted' : 'Sound on'}

@@ -14,7 +14,7 @@ export default function VideoStrip() {
           title="See the pieces move."
           linkTo="/videos"
           linkLabel="All videos"
-          aside="Story clips saved from the @musebyanum highlights: the collections up close, on the wrist and in the mirror. Tap one to play it with sound."
+          aside="Stories saved from the @musebyanum highlights: the collections up close, on the wrist and in the mirror. Most are photos set to music, so tap one to hear it."
         />
         <div className={s.scroller} data-reveal="stagger">
           {featuredClips.map((c) => (

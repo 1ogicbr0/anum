@@ -27,7 +27,7 @@ export default function Videos() {
         <div className="eyebrow">Watch</div>
         <h1 className={s.title}>Muse in motion.</h1>
         <p className={s.lead}>
-          Every story from the nine <Link to="/#instagram">@{brand.handle}</Link> highlights, plus the public reels, grouped the way the highlights are. Tap a clip to play it with sound.
+          Every story from the nine <Link to="/#instagram">@{brand.handle}</Link> highlights, plus the public reels, grouped the way the highlights are. Most highlight stories are photos set to music, so tap one to hear it; the Muse PR stories are full videos.
         </p>
       </div>
 

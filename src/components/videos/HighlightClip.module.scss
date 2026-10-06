@@ -142,3 +142,83 @@
   font-weight: 600;
   white-space: nowrap;
 }
+
+.kind {
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: 5px 10px;
+  border-radius: 999px;
+  backdrop-filter: blur(8px);
+  background: rgba($plum, 0.55);
+  color: $white;
+}
+
+// Photo stories: a slow drift while the music plays, so the still image reads as "playing".
+.photo.playing video {
+  animation: clip-drift 14s ease-in-out infinite alternate;
+}
+
+@keyframes clip-drift {
+  from {
+    transform: scale(1) translate(0, 0);
+  }
+  to {
+    transform: scale(1.08) translate(-1.5%, 1.5%);
+  }
+}
+
+.eq {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+  height: 26px;
+  padding: 10px 12px;
+  border-radius: 999px;
+  background: rgba($plum, 0.45);
+  backdrop-filter: blur(8px);
+  box-sizing: content-box;
+  pointer-events: none;
+
+  i {
+    display: block;
+    width: 4px;
+    height: 100%;
+    border-radius: 2px;
+    background: $white;
+    transform-origin: bottom;
+    animation: clip-eq 0.9s ease-in-out infinite;
+
+    &:nth-child(2) {
+      animation-delay: 0.15s;
+    }
+
+    &:nth-child(3) {
+      animation-delay: 0.3s;
+    }
+  }
+}
+
+@keyframes clip-eq {
+  0%,
+  100% {
+    transform: scaleY(0.3);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .photo.playing video,
+  .eq i {
+    animation: none;
+  }
+}
