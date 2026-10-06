@@ -13,7 +13,7 @@ import { buildOrderLink, buildOrderMessage, orderChannel, orderLabel } from '@/u
  *
  * scenario + context are passed straight to buildOrderMessage().
  */
-export default function OrderButton({ scenario, context, children, icon = true, ...rest }) {
+export default function OrderButton({ scenario, context, children, icon = true, className = '', ...rest }) {
   const opts = { scenario, ...(context ?? {}) }
   const message = buildOrderMessage(opts)
   const instagram = orderChannel() === 'instagram'
@@ -22,7 +22,7 @@ export default function OrderButton({ scenario, context, children, icon = true, 
 
   if (!instagram) {
     return (
-      <Button href={buildOrderLink(opts)} {...rest}>
+      <Button href={buildOrderLink(opts)} className={className} {...rest}>
         {icon && <Icon name="chat" />}
         {children ?? orderLabel()}
       </Button>
@@ -33,7 +33,7 @@ export default function OrderButton({ scenario, context, children, icon = true, 
 
   return (
     <>
-      <Button onClick={open} {...rest}>
+      <Button onClick={open} className={`btn--instagram ${className}`} {...rest}>
         {icon && <Icon name="instagram" />}
         {children ?? orderLabel()}
       </Button>
