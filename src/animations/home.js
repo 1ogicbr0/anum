@@ -99,32 +99,40 @@ export function hero(el) {
     .from(q(el, '[data-anim=perks] > *'), { x: -14, opacity: 0, duration: 0.6, stagger: 0.08 }, 0.95)
     .fromTo(main, { clipPath: 'inset(100% 0% 0% 0% round 28px)' }, { clipPath: 'inset(0% 0% 0% 0% round 28px)', duration: 1.4, ease: 'expo.out', clearProps: 'clipPath' }, 0.15)
     .fromTo(one(main, 'img'), { scale: 1.25, transition: 'none' }, { scale: 1, duration: 2, ease: 'expo.out', clearProps: 'all' }, 0.15)
-    .from(small, { scale: 0.5, rotation: -18, opacity: 0, duration: 1, ease: 'back.out(1.7)' }, 0.75)
+    .from(small, { scale: 0.6, rotation: -6, opacity: 0, duration: 1, ease: 'back.out(1.4)' }, 0.75)
     .from(card, { x: 70, opacity: 0, duration: 0.9 }, 0.9)
 
   const scrub = { trigger: el, start: 'top top', end: 'bottom top', scrub: true }
   gsap.to(main, { yPercent: -8, ease: 'none', scrollTrigger: scrub })
-  gsap.to(small, { yPercent: 16, rotation: -4, ease: 'none', scrollTrigger: scrub })
+  gsap.to(small, { yPercent: 14, ease: 'none', scrollTrigger: scrub })
   gsap.to(card, { yPercent: 10, ease: 'none', scrollTrigger: scrub })
 
   gsap.set(visual, { transformPerspective: 1100 })
   const rx = gsap.quickTo(visual, 'rotationX', { duration: 0.7, ease: 'power3' })
   const ry = gsap.quickTo(visual, 'rotationY', { duration: 0.7, ease: 'power3' })
-  const move = (e) => {
-    if (e.pointerType && e.pointerType !== 'mouse') return
-    const r = el.getBoundingClientRect()
-    ry(((e.clientX - r.left) / r.width - 0.5) * 9)
-    rx(-((e.clientY - r.top) / r.height - 0.5) * 7)
-  }
+  // The tilt is subtle and only while the page sits at the top: the moment the visitor
+  // scrolls, the visual straightens and stays straight.
   const leave = () => {
     rx(0)
     ry(0)
   }
+  const move = (e) => {
+    if (e.pointerType && e.pointerType !== 'mouse') return
+    if (window.scrollY > 10) return
+    const r = el.getBoundingClientRect()
+    ry(((e.clientX - r.left) / r.width - 0.5) * 4)
+    rx(-((e.clientY - r.top) / r.height - 0.5) * 3)
+  }
+  const onScroll = () => {
+    if (window.scrollY > 10) leave()
+  }
   el.addEventListener('pointermove', move)
   el.addEventListener('pointerleave', leave)
+  window.addEventListener('scroll', onScroll, { passive: true })
   return () => {
     el.removeEventListener('pointermove', move)
     el.removeEventListener('pointerleave', leave)
+    window.removeEventListener('scroll', onScroll)
   }
 }
 
@@ -214,13 +222,13 @@ export function signet(el) {
   tl.eventCallback('onComplete', () => gsap.to(ring, { y: -10, rotation: 3, duration: 2.8, yoyo: true, repeat: -1, ease: 'sine.inOut' }))
 }
 
-// 7. Gold & silver: the photo wipes open from its centre, the two finishes slide in from either side.
+// 7. Gold & silver: the photo wipes open from its centre, the two finishes slide in straight from either side.
 export function goldSilver(el) {
   const tl = gsap.timeline({ scrollTrigger: enter(el) })
   heading(el, textTrack, tl)
   tl.fromTo(one(el, '[data-anim=banner]'), { clipPath: 'inset(0% 50% 0% 50% round 28px)' }, { clipPath: 'inset(0% 0% 0% 0% round 28px)', duration: 1.3, ease: 'expo.inOut', clearProps: 'clipPath' }, 0.2)
-    .from(one(el, '[data-anim=gold]'), { x: -90, rotation: -2, opacity: 0, duration: 1, ease: 'back.out(1.3)', clearProps: stay }, 0.6)
-    .from(one(el, '[data-anim=silver]'), { x: 90, rotation: 2, opacity: 0, duration: 1, ease: 'back.out(1.3)', clearProps: stay }, 0.7)
+    .from(one(el, '[data-anim=gold]'), { x: -70, opacity: 0, duration: 0.8, ease: 'power3.out', clearProps: stay }, 0.5)
+    .from(one(el, '[data-anim=silver]'), { x: 70, opacity: 0, duration: 0.8, ease: 'power3.out', clearProps: stay }, 0.6)
   const offs = ['gold', 'silver'].map((k) => {
     const card = one(el, `[data-anim=${k}]`)
     const eyebrow = card.querySelector('span')
