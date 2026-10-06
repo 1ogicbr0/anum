@@ -89,15 +89,16 @@ for light, `:root[data-theme='dark']` for dark) and exposed to SCSS as tokens: `
 `$ink`, `$muted`, `$link`, `$gold-text`, `$lilac-100/200/300`, `$line`, the satin gradient and the
 shadows. `$plum`, `$purple`, the golds and `$white` are fixed in both themes (dark bands, buttons,
 text on dark). `ThemeToggle` in the header flips `data-theme` on `<html>` and stores the choice in
-localStorage (`muse-theme`); a small inline script in `index.html` applies the saved or system
-preference before first paint so there is no flash.
+localStorage (`muse-theme`); a small inline script in `index.html` applies the saved choice (light by
+default) before first paint so there is no flash.
 
 ## Welcome screen
 
 `Preloader` (in `Layout`) covers the first paint with a plum curtain for about four seconds: the
 wordmark rises letter by letter, "BY ANUM" settles, a gold line draws, the tagline appears, then the
 curtain lifts. It sets `data-loading` on `<html>` and fires `muse:ready` when it is gone, which the
-hero animation waits for. Visitors with reduced motion never see it.
+hero animation waits for. Visitors with reduced motion never see it, nor does a page that opens in a
+background tab; a seven-second safety timer and a visibility check guarantee it always clears.
 
 ## Motion
 

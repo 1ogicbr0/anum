@@ -6,6 +6,9 @@ const q = (el, sel) => Array.from(el.querySelectorAll(sel))
 const one = (el, sel) => el.querySelector(sel)
 const enter = (trigger, start = 'top 82%') => ({ trigger, start, once: true })
 const stay = 'transform,opacity,filter' // clear after entrance so CSS hovers work again
+// On phones nothing slides in from the sides (it would push past the screen edge); it rises instead.
+const phone = () => window.matchMedia('(max-width: 767px)').matches
+const fromSide = (x, y = 40) => (phone() ? { y } : { x })
 
 // Text effects ---------------------------------------------------------------
 // chars rise out of a mask, with a little roll (hero)
@@ -91,7 +94,7 @@ export function hero(el) {
     .fromTo(main, { clipPath: 'inset(100% 0% 0% 0% round 28px)' }, { clipPath: 'inset(0% 0% 0% 0% round 28px)', duration: 1.4, ease: 'expo.out', clearProps: 'clipPath' }, 0.15)
     .fromTo(one(main, 'img'), { scale: 1.25, transition: 'none' }, { scale: 1, duration: 2, ease: 'expo.out', clearProps: 'all' }, 0.15)
     .from(small, { scale: 0.6, rotation: -6, opacity: 0, duration: 1, ease: 'back.out(1.4)' }, 0.75)
-    .from(card, { x: 70, opacity: 0, duration: 0.9 }, 0.9)
+    .from(card, { ...fromSide(70, 30), opacity: 0, duration: 0.9 }, 0.9)
 
   const scrub = { trigger: el, start: 'top top', end: 'bottom top', scrub: true }
   gsap.to(main, { yPercent: -8, ease: 'none', scrollTrigger: scrub })
@@ -255,8 +258,8 @@ export function goldSilver(el) {
   const tl = gsap.timeline({ scrollTrigger: enter(el) })
   heading(el, textTrack, tl)
   tl.fromTo(one(el, '[data-anim=banner]'), { clipPath: 'inset(0% 50% 0% 50% round 28px)' }, { clipPath: 'inset(0% 0% 0% 0% round 28px)', duration: 1.3, ease: 'expo.inOut', clearProps: 'clipPath' }, 0.2)
-    .from(one(el, '[data-anim=gold]'), { x: -70, opacity: 0, duration: 0.8, ease: 'power3.out', clearProps: stay }, 0.5)
-    .from(one(el, '[data-anim=silver]'), { x: 70, opacity: 0, duration: 0.8, ease: 'power3.out', clearProps: stay }, 0.6)
+    .from(one(el, '[data-anim=gold]'), { ...fromSide(-70), opacity: 0, duration: 0.8, ease: 'power3.out', clearProps: stay }, 0.5)
+    .from(one(el, '[data-anim=silver]'), { ...fromSide(70), opacity: 0, duration: 0.8, ease: 'power3.out', clearProps: stay }, 0.6)
   const offs = ['gold', 'silver'].map((k) => {
     const card = one(el, `[data-anim=${k}]`)
     const eyebrow = card.querySelector('span')

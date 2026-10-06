@@ -9,7 +9,11 @@ import s from './Preloader.module.scss'
  */
 export default function Preloader() {
   const ref = useRef(null)
-  const [done, setDone] = useState(() => typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches)
+  // Skipped when the visitor prefers reduced motion, and when the page opens in a background
+  // tab (GSAP's ticker sleeps there, so the curtain would never lift).
+  const [done, setDone] = useState(
+    () => typeof window === 'undefined' || window.matchMedia('(prefers-reduced-motion: reduce)').matches || document.visibilityState === 'hidden',
+  )
 
   useLayoutEffect(() => {
     if (done) {
@@ -22,17 +26,32 @@ export default function Preloader() {
     const prevOverflow = document.body.style.overflow
     document.body.style.overflow = 'hidden'
 
+    let finished = false
+    let tl
+    const finish = () => {
+      if (finished) return
+      finished = true
+      document.body.style.overflow = prevOverflow
+      delete document.documentElement.dataset.loading
+      window.dispatchEvent(new Event('muse:ready'))
+      setDone(true)
+    }
+    // Whatever happens (tab hidden mid-way, a stalled frame loop), the page is never held
+    // longer than this.
+    const safety = setTimeout(() => (tl ? tl.progress(1) : finish()), 7000)
+    const onVisibility = () => {
+      if (document.hidden && tl) tl.progress(1)
+    }
+    document.addEventListener('visibilitychange', onVisibility)
+
     const ctx = gsap.context(() => {
       const word = el.querySelector('[data-pl=word]')
       const split = new SplitText(word, { type: 'chars' })
-      const tl = gsap.timeline({
+      tl = gsap.timeline({
         defaults: { ease: 'power4.out' },
         onComplete: () => {
           split.revert()
-          document.body.style.overflow = prevOverflow
-          delete document.documentElement.dataset.loading
-          window.dispatchEvent(new Event('muse:ready'))
-          setDone(true)
+          finish()
         },
       })
       // About four seconds in all: letters rise, the line draws, a quiet hold, then the curtain lifts.
@@ -46,6 +65,8 @@ export default function Preloader() {
     }, el)
 
     return () => {
+      clearTimeout(safety)
+      document.removeEventListener('visibilitychange', onVisibility)
       ctx.revert()
       document.body.style.overflow = prevOverflow
       delete document.documentElement.dataset.loading

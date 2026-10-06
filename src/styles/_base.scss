@@ -300,6 +300,14 @@ h3 {
   scroll-margin-top: calc(#{$header-h} + 24px);
 }
 
+// Entrance animations may translate elements past the viewport edge for a moment; clipping
+// sideways overflow here (clip, not hidden, so nothing becomes a scroll container) keeps the
+// page from growing a horizontal scroll on phones.
+main,
+main > * {
+  overflow-x: clip;
+}
+
 // Everything inside a page section is lifted above the cursor glow (z-index 1), so the glow
 // shows on the section backgrounds and disappears behind cards, photos and text.
 main > * > *,
