@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react'
-import { Link, Navigate, useParams } from 'react-router-dom'
+import { Link, Navigate, useParams, useSearchParams } from 'react-router-dom'
 import Button from '@/components/ui/Button'
 import OrderButton from '@/components/ui/OrderButton'
 import Icon from '@/components/ui/Icon'
@@ -20,9 +20,10 @@ import s from './Product.module.scss'
 
 export default function Product() {
   const { slug } = useParams()
+  const [params] = useSearchParams()
   const product = productBySlug[slug]
   const [finish, setFinish] = useState(product?.finishes[0] ?? 'gold')
-  const [initials, setInitials] = useState('AM')
+  const [initials, setInitials] = useState(() => (params.get('initials') || 'AM').replace(/[^A-Za-z]/g, '').toUpperCase().slice(0, 3) || 'AM')
   const [size, setSize] = useState('')
   const [view, setView] = useState(0)
   const { has, toggle } = useWishlist()

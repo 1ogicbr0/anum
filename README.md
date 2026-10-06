@@ -78,6 +78,10 @@ attributes inside it (so nothing animates twice), runs the builder inside `gsap.
 Entrance tweens end with `clearProps` so the existing CSS hovers keep working. Other pages still
 use the lighter CSS `data-reveal` system.
 
+The home signet section has a "Try your initials" box (up to three letters, letters only) that
+engraves the ring preview beside it live; "Design your ring" carries the letters to the product page
+as `?initials=`, where the engraving field starts with them.
+
 ## Motion
 
 `src/styles/_motion.scss` + `RevealObserver`: add `data-reveal` to any element to fade it up when it
