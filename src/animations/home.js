@@ -34,6 +34,11 @@ function textWave(target, vars = {}) {
   const split = new SplitText(target, { type: 'words,chars' })
   return gsap.from(split.chars, { y: 26, opacity: 0, duration: 0.7, ease: 'back.out(2.5)', stagger: { each: 0.02, from: 'center' }, onComplete: () => split.revert(), ...vars })
 }
+// words slide in from the left with a skew that settles (categories)
+function textSkew(target, vars = {}) {
+  const split = new SplitText(target, { type: 'words' })
+  return gsap.from(split.words, { x: -34, skewX: 14, opacity: 0, duration: 0.8, ease: 'power3.out', stagger: 0.08, onComplete: () => split.revert(), ...vars })
+}
 // letters settle together (gold & silver)
 function textTrack(target, vars = {}) {
   return gsap.from(target, { letterSpacing: '0.18em', opacity: 0, duration: 1.1, ease: 'power3.out', ...vars })
@@ -171,18 +176,26 @@ export function marquee(el) {
   return () => st.kill()
 }
 
-// 4. Categories: tiles flip down into place like cards on a table; icons lift and turn on hover.
+// 4. Categories: the tiles fade up from the centre and each icon draws itself like a sketch,
+// stroke by stroke, before its label appears; hovering redraws the icon.
 export function categories(el) {
-  const grid = one(el, '[data-anim=grid]')
   const tiles = q(el, '[data-anim=tile]')
-  gsap.set(grid, { perspective: 900 })
+  const strokes = (tile) => q(tile, 'svg path, svg circle, svg ellipse, svg rect')
   const tl = gsap.timeline({ scrollTrigger: enter(el) })
-  heading(el, textLines, tl)
-  tl.from(tiles, { rotationX: -75, y: 40, opacity: 0, transformOrigin: '50% 0%', duration: 0.9, stagger: 0.07, clearProps: stay }, 0.2)
+  heading(el, textSkew, tl)
+  tl.from(tiles, { y: 26, opacity: 0, scale: 0.94, duration: 0.7, stagger: { each: 0.06, from: 'center' }, clearProps: stay }, 0.15)
+  tiles.forEach((tile, i) => {
+    const at = 0.3 + i * 0.08
+    tl.from(strokes(tile), { drawSVG: '0%', duration: 1.1, ease: 'power2.inOut', stagger: 0.1 }, at)
+    tl.from(tile.querySelector('span'), { y: 10, opacity: 0, duration: 0.5 }, at + 0.7)
+  })
   const offs = tiles.map((tile) => {
     const icon = tile.querySelector('svg')
-    const over = () => gsap.to(icon, { rotation: 14, y: -6, scale: 1.12, duration: 0.45, ease: 'back.out(2)' })
-    const out = () => gsap.to(icon, { rotation: 0, y: 0, scale: 1, duration: 0.5 })
+    const over = () => {
+      gsap.to(icon, { scale: 1.1, duration: 0.4, ease: 'back.out(2)' })
+      gsap.fromTo(strokes(tile), { drawSVG: '0%' }, { drawSVG: '100%', duration: 0.7, ease: 'power2.inOut', stagger: 0.06 })
+    }
+    const out = () => gsap.to(icon, { scale: 1, duration: 0.4 })
     tile.addEventListener('pointerenter', over)
     tile.addEventListener('pointerleave', out)
     return () => {

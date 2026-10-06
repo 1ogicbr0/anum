@@ -62,7 +62,7 @@ signature per section so no two sections move alike:
 | Hero | headline characters rise out of a mask, photo curtain-reveals, layers parallax on scroll | the visual tilts towards the pointer |
 | Trust strip | icons spin in like coins | icons wobble |
 | Marquee | words lean with scroll speed and straighten when it stops | — |
-| Categories | tiles flip down into place, title lines slide from a mask | icon lifts and turns |
+| Categories | tiles fade up from the centre, each icon draws itself stroke by stroke, title words slide in with a skew | icon redraws and scales |
 | Collections | featured edit swings in from the left, others from the right, title sharpens from blur | cards tilt in 3D |
 | Signet | band irises open, ring spins in (elastic) and keeps floating, title engraves letter by letter | — |
 | Gold & silver | photo wipes open from its centre, finishes slide in from either side | card lifts, eyebrow letters spread |
