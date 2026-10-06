@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react'
 import { Link, Navigate, useParams, useSearchParams } from 'react-router-dom'
+import Accordion from '@/components/ui/Accordion'
 import Button from '@/components/ui/Button'
 import OrderButton from '@/components/ui/OrderButton'
 import Icon from '@/components/ui/Icon'
@@ -206,24 +207,21 @@ export default function Product() {
           </ul>
 
           <div className={s.accordion}>
-            <details open>
-              <summary>Details <Icon name="chevron" size={18} /></summary>
+            <Accordion title="Details" defaultOpen>
               <ul>
                 {product.details.map((d) => <li key={d}>{d}</li>)}
                 <li>[Material, plating and dimensions from the client]</li>
               </ul>
-            </details>
-            <details>
-              <summary>Care <Icon name="chevron" size={18} /></summary>
+            </Accordion>
+            <Accordion title="Care">
               <p>Keep away from perfume and water, wipe with a soft cloth, and store in the MUSE box between wears.</p>
-            </details>
-            <details>
-              <summary>Delivery &amp; exchanges <Icon name="chevron" size={18} /></summary>
+            </Accordion>
+            <Accordion title="Delivery &amp; exchanges">
               <p>
                 {brand.delivery.headline} in {brand.delivery.time}. {brand.delivery.note}.
                 {product.customizable ? ' Engraved pieces are made for you, so exchanges are for sizing only.' : ''} [Policy from the client.]
               </p>
-            </details>
+            </Accordion>
           </div>
         </div>
       </section>

@@ -218,29 +218,6 @@
 }
 
 .accordion {
-  details {
-    border-top: 1px solid $lilac-200;
-  }
-
-  summary {
-    list-style: none;
-    cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    min-height: 56px;
-    font-weight: 600;
-    font-size: 15px;
-
-    &::-webkit-details-marker {
-      display: none;
-    }
-  }
-
-  details[open] summary svg {
-    transform: rotate(180deg);
-  }
-
   p,
   ul {
     margin: 0 0 18px;
@@ -307,13 +284,15 @@
 
 .videoThumb {
   position: relative;
-  @include satin-deep;
+  background: $plum;
 
+  // The story is a tall 9:16 frame; showing it whole inside the thumb reads as a little
+  // video card instead of an odd slice of it.
   img {
     display: block;
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
   }
 }
 
