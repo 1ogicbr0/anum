@@ -1,0 +1,17 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 20px;
+}
+
+.empty {
+  background: $white;
+  border-radius: $radius-lg;
+  padding: 48px 24px;
+  text-align: center;
+  color: $muted;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+}

@@ -1,0 +1,36 @@
+.wrap {
+  @include container;
+  @include section;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: $white;
+  border-radius: $radius-md + 2px;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.stars {
+  display: flex;
+  gap: 4px;
+  color: $gold;
+}
+
+.quote {
+  @include display(24px);
+  line-height: 1.35;
+}
+
+.who {
+  font-size: 13px;
+  color: $muted;
+  font-weight: 500;
+}

@@ -1,0 +1,17 @@
+.bar {
+  background: $plum;
+  color: $white;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  text-align: center;
+  padding: 11px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+
+  svg {
+    color: $gold-light;
+  }
+}

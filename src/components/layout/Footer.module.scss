@@ -1,0 +1,91 @@
+.footer {
+  background: $plum;
+  color: $white;
+  padding: 72px 0 32px;
+}
+
+.grid {
+  @include container;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 40px;
+
+  @include mq(lg) {
+    grid-template-columns: 1.5fr repeat(4, 1fr);
+  }
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 320px;
+}
+
+.blurb {
+  font-size: 14px;
+  line-height: 1.65;
+  color: $on-plum;
+}
+
+.social {
+  display: flex;
+  gap: 10px;
+}
+
+.socialLink {
+  width: 40px;
+  height: 40px;
+  border-radius: $radius-pill;
+  border: 1px solid rgba($white, 0.3);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: $white;
+
+  &:hover {
+    background: rgba($white, 0.1);
+    color: $white;
+  }
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.colTitle {
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: $gold-light;
+  font-weight: 600;
+}
+
+.link {
+  color: $on-plum;
+  font-size: 14px;
+
+  &:hover {
+    color: $white;
+  }
+}
+
+.contact {
+  font-size: 14px;
+  color: $on-plum;
+}
+
+.bottom {
+  @include container;
+  margin-top: 48px;
+  padding-top: 24px;
+  border-top: 1px solid rgba($white, 0.14);
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  font-size: 12px;
+  color: $on-plum-muted;
+}

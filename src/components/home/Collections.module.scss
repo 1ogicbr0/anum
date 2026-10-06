@@ -1,0 +1,84 @@
+.section {
+  background: $white;
+  @include section;
+}
+
+.inner {
+  @include container;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.featured {
+  @include card;
+  grid-column: 1 / -1;
+  background: $lilac-100;
+  display: flex;
+  flex-wrap: wrap;
+  color: $plum;
+}
+
+.featuredImg {
+  flex: 1 1 380px;
+  min-height: 360px;
+}
+
+.featuredBody {
+  flex: 1 1 320px;
+  padding: clamp(28px, 4vw, 56px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 16px;
+}
+
+.featuredTitle {
+  @include display(44px);
+}
+
+.featuredText {
+  color: $muted;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.more {
+  font-weight: 600;
+  font-size: 15px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: $purple;
+}
+
+.card {
+  @include card;
+  background: $lilac-100;
+  display: flex;
+  flex-direction: column;
+  color: $plum;
+}
+
+.cardImg {
+  height: 240px;
+}
+
+.cardBody {
+  padding: 22px 24px 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.cardTitle {
+  @include display(28px);
+}
+
+.cardSub {
+  font-size: 14px;
+  color: $muted;
+}

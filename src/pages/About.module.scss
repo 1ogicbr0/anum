@@ -1,0 +1,116 @@
+.wrap {
+  @include container;
+  padding-top: 28px;
+  padding-bottom: 72px;
+  display: flex;
+  flex-direction: column;
+  gap: 56px;
+}
+
+.hero {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  align-items: center;
+}
+
+.copy {
+  flex: 1 1 420px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.title {
+  @include display(clamp(44px, 5.4vw, 72px));
+  line-height: 1.02;
+}
+
+.lead {
+  font-size: 18px;
+  line-height: 1.65;
+  color: $muted;
+}
+
+.visual {
+  flex: 1 1 360px;
+  border-radius: 28px;
+  min-height: 380px;
+}
+
+.story {
+  background: $white;
+  border-radius: $radius-xl;
+  padding: clamp(28px, 4vw, 56px);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 32px;
+}
+
+.storyTitle {
+  @include display(32px);
+  margin-bottom: 12px;
+}
+
+.storyText {
+  font-size: 15px;
+  line-height: 1.7;
+  color: $muted;
+}
+
+.values {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.value {
+  @include satin;
+  border-radius: $radius-lg;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  svg {
+    color: $gold-deep;
+  }
+}
+
+.valueTitle {
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.valueText {
+  font-size: 14px;
+  color: $muted;
+  line-height: 1.6;
+}
+
+.policy {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.policyCard {
+  background: $white;
+  border-radius: $radius-lg;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  scroll-margin-top: 120px;
+}
+
+.policyTitle {
+  @include display(26px);
+}
+
+.policyText {
+  font-size: 14px;
+  color: $muted;
+  line-height: 1.65;
+}

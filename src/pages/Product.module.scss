@@ -1,0 +1,297 @@
+.head {
+  @include container;
+  padding-top: 28px;
+}
+
+.crumbs {
+  font-size: 13px;
+  color: $muted;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+
+  a {
+    color: $muted;
+
+    &:hover {
+      color: $plum;
+    }
+  }
+
+  strong {
+    color: $plum;
+    font-weight: 500;
+  }
+}
+
+.layout {
+  @include container;
+  padding-top: 24px;
+  padding-bottom: 72px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 48px;
+  align-items: flex-start;
+}
+
+.gallery {
+  flex: 1 1 520px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.main {
+  border-radius: 28px;
+  min-height: 420px;
+  position: relative;
+}
+
+.live {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  background: $white;
+  border-radius: $radius-pill;
+  padding: 8px 14px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: $purple;
+}
+
+.preview {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 24px;
+}
+
+.thumbs {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.thumb {
+  border-radius: 14px;
+  border: 2px solid transparent;
+  height: 110px;
+  padding: 0;
+  background: none;
+  overflow: hidden;
+
+  > * {
+    height: 100%;
+  }
+
+  &.on {
+    border-color: $plum;
+  }
+}
+
+.info {
+  flex: 1 1 400px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.title {
+  @include display(clamp(38px, 4vw, 54px));
+  line-height: 1.03;
+}
+
+.priceRow {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.price {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.meta {
+  font-size: 13px;
+  color: $muted;
+}
+
+.desc {
+  margin-top: 4px;
+  font-size: 16px;
+  line-height: 1.65;
+  color: $muted;
+}
+
+.panel {
+  background: $white;
+  border-radius: 22px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.groupHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.hint {
+  font-size: 13px;
+  color: $muted;
+}
+
+.chips {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.initials {
+  min-height: 52px;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.summary {
+  @include satin;
+  border-radius: 14px;
+  padding: 14px 16px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  svg {
+    color: $gold-deep;
+  }
+}
+
+.ctas {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.note {
+  font-size: 12px;
+  color: $muted;
+  text-align: center;
+}
+
+.perks {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 10px;
+  font-size: 14px;
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  svg {
+    color: $purple;
+  }
+}
+
+.accordion {
+  details {
+    border-top: 1px solid $lilac-200;
+  }
+
+  summary {
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 56px;
+    font-weight: 600;
+    font-size: 15px;
+
+    &::-webkit-details-marker {
+      display: none;
+    }
+  }
+
+  details[open] summary svg {
+    transform: rotate(180deg);
+  }
+
+  p,
+  ul {
+    margin: 0 0 18px;
+    font-size: 14px;
+    line-height: 1.65;
+    color: $muted;
+  }
+
+  li {
+    display: flex;
+    gap: 8px;
+
+    &::before {
+      content: '·';
+      color: $gold-deep;
+    }
+  }
+}
+
+.related {
+  background: $white;
+  @include section;
+}
+
+.relatedInner {
+  @include container;
+}
+
+.previewCard {
+  @include satin-deep;
+  border-radius: 22px;
+  padding: 18px 20px 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.previewLabel {
+  align-self: flex-start;
+  background: $white;
+  border-radius: $radius-pill;
+  padding: 8px 14px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: $purple;
+}
+
+.source {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+}

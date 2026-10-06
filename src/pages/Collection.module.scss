@@ -1,0 +1,128 @@
+.hero {
+  @include container;
+  padding-top: 28px;
+}
+
+.crumbs {
+  font-size: 13px;
+  color: $muted;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+
+  a {
+    color: $muted;
+
+    &:hover {
+      color: $plum;
+    }
+  }
+
+  strong {
+    color: $plum;
+    font-weight: 500;
+  }
+}
+
+.band {
+  margin-top: 20px;
+  border-radius: $radius-xl;
+  display: flex;
+  flex-wrap: wrap;
+  overflow: hidden;
+  min-height: 380px;
+}
+
+.lilac {
+  @include satin;
+}
+
+.deep {
+  @include satin-deep;
+  color: $white;
+
+  .text,
+  .eyebrow {
+    color: $white;
+  }
+}
+
+.silver {
+  @include satin-silver;
+}
+
+.copy {
+  flex: 1 1 400px;
+  min-width: 0;
+  padding: clamp(32px, 5vw, 64px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 16px;
+}
+
+.eyebrow {
+  @include eyebrow;
+}
+
+.title {
+  @include display(clamp(44px, 5.4vw, 72px));
+  line-height: 1.02;
+}
+
+.text {
+  font-size: 16px;
+  line-height: 1.65;
+  color: $muted;
+  max-width: 560px;
+}
+
+.visual {
+  flex: 1 1 360px;
+  min-height: 300px;
+}
+
+.grid {
+  @include container;
+  @include section;
+}
+
+.index {
+  @include container;
+  padding-top: 28px;
+  padding-bottom: 72px;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  @include card;
+  background: $white;
+  display: flex;
+  flex-direction: column;
+  color: $plum;
+}
+
+.cardImg {
+  height: 220px;
+}
+
+.cardBody {
+  padding: 22px 24px 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.cardTitle {
+  @include display(28px);
+}
+
+.cardSub {
+  font-size: 14px;
+  color: $muted;
+}

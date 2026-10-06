@@ -1,0 +1,124 @@
+.hero {
+  @include container;
+  padding-top: clamp(40px, 6vw, 88px);
+  padding-bottom: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 48px;
+}
+
+.copy {
+  flex: 1 1 440px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.eyebrow {
+  @include eyebrow;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  &::before {
+    content: '';
+    width: 28px;
+    height: 1px;
+    background: $gold-deep;
+  }
+}
+
+.title {
+  @include display(clamp(48px, 6.2vw, 86px));
+  line-height: 1.02;
+}
+
+.sub {
+  font-size: 18px;
+  line-height: 1.6;
+  color: $muted;
+  max-width: 520px;
+}
+
+.ctas {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.perks {
+  display: flex;
+  gap: 28px;
+  flex-wrap: wrap;
+  font-size: 13px;
+  color: $muted;
+  font-weight: 500;
+
+  span {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  svg {
+    color: $gold-deep;
+  }
+}
+
+.visual {
+  flex: 1 1 440px;
+  min-width: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+
+  @include mq-down(sm) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.main {
+  grid-column: 1 / -1;
+  border-radius: 28px;
+  height: 430px;
+
+  @include mq-down(sm) {
+    height: 320px;
+  }
+}
+
+.small {
+  border-radius: 22px;
+  height: 220px;
+}
+
+.card {
+  border-radius: 22px;
+  height: 220px;
+  background: $white;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.cardTitle {
+  @include display(28px);
+  line-height: 1.1;
+}
+
+.cardSub {
+  font-size: 14px;
+  color: $muted;
+  margin-top: 6px;
+}
+
+.cardLink {
+  font-weight: 600;
+  font-size: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}

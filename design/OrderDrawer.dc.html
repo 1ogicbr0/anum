@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>MUSE by Anum — Your order drawer</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&amp;family=Manrope:wght@400;500;600;700&amp;family=Nunito:wght@800&amp;display=swap">
+<style>
+body{margin:0;background:#F6F2FB}
+a{color:#5B3FA6}a:hover{color:#2B2140}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 22px;border-radius:999px;font:600 15px/1 'Manrope',sans-serif;text-decoration:none;border:1.5px solid transparent;cursor:pointer}
+.btn-dark{background:#2B2140;color:#fff}.btn-dark:hover{background:#1C1530;color:#fff}
+.btn-outline{background:transparent;color:#2B2140;border-color:#2B2140}.btn-outline:hover{background:#2B2140;color:#fff}
+.satin{background:linear-gradient(135deg,#EDE5F8 0%,#D8C9EF 38%,#E6DBF5 62%,#CFBDE9 100%)}
+.satin-deep{background:linear-gradient(135deg,#C7B3E6 0%,#AE97DB 45%,#C2ADE4 70%,#9E85D2 100%)}
+.ph{display:flex;align-items:center;justify-content:center;border-radius:12px;flex:none}
+.ico{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.qty{width:32px;height:32px;border-radius:999px;border:1px solid #D3C7E8;background:#fff;color:#2B2140;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0}
+.icon-btn{width:40px;height:40px;border:0;background:transparent;border-radius:999px;color:#2B2140;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.icon-btn:hover{background:#EAE2F6}
+.link{font:600 12px/1 'Manrope',sans-serif;color:#5E5473;background:none;border:0;padding:0;cursor:pointer;text-decoration:underline}
+input{font-family:'Manrope',sans-serif}
+</style>
+</helmet>
+<div style="width: 440px; height: 820px; box-sizing: border-box; background: #FFFFFF; font-family: 'Manrope', sans-serif; color: #2B2140; display: flex; flex-direction: column; border-radius: 24px 0 0 24px; box-shadow: -24px 0 60px rgba(43,33,64,.18); overflow: hidden">
+
+  <div style="display: flex; align-items: center; justify-content: space-between; padding: 18px 16px 14px 24px; border-bottom: 1px solid #EFEAF6">
+    <div style="display: flex; flex-direction: column; gap: 2px">
+      <span style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 28px; line-height: 1">Your order</span>
+      <span style="font-size: 12px; color: #5E5473">2 pieces · we confirm everything on WhatsApp</span>
+    </div>
+    <button class="icon-btn" type="button" aria-label="Close"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  </div>
+
+  <div style="flex: 1 1 auto; min-height: 0; overflow-y: auto; padding: 16px 24px; display: flex; flex-direction: column; gap: 14px">
+
+    <div style="display: flex; gap: 14px; align-items: flex-start; padding: 14px; border: 1px solid #EFEAF6; border-radius: 16px">
+      <span class="ph satin-deep" style="width: 76px; height: 76px"><svg style="width: 34px; height: 34px; stroke: #FFFFFF; fill: none; stroke-width: 1.2; stroke-linecap: round; stroke-linejoin: round" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="14" r="7"/><rect x="8.5" y="4" width="7" height="4" rx="1"/></svg></span>
+      <div style="flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 6px">
+        <div style="display: flex; justify-content: space-between; gap: 8px"><span style="font-weight: 600; font-size: 14px">Customizable Signet Ring</span><span style="font-weight: 600; font-size: 14px; white-space: nowrap">PKR [price]</span></div>
+        <span style="font-size: 12px; color: #5E5473">Muse Gold · Engraved “A · M” · Size 7</span>
+        <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: 4px">
+          <div style="display: flex; align-items: center; gap: 10px"><button class="qty" type="button" aria-label="Decrease quantity"><svg class="ico" style="width: 14px; height: 14px" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/></svg></button><span style="font-size: 14px; font-weight: 600; min-width: 16px; text-align: center">1</span><button class="qty" type="button" aria-label="Increase quantity"><svg class="ico" style="width: 14px; height: 14px" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button></div>
+          <button class="link" type="button">Edit engraving</button>
+        </div>
+      </div>
+    </div>
+
+    <div style="display: flex; gap: 14px; align-items: flex-start; padding: 14px; border: 1px solid #EFEAF6; border-radius: 16px">
+      <span class="ph" style="width: 76px; height: 76px; background: #FAF8FD; border: 1px solid #EFEAF6"><svg style="width: 34px; height: 34px; stroke: #8C6A24; fill: none; stroke-width: 1.2; stroke-linecap: round; stroke-linejoin: round" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v3"/><path d="M12 6c-3 4-3 7 0 11 3-4 3-7 0-11z"/><circle cx="12" cy="19" r="2"/></svg></span>
+      <div style="flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 6px">
+        <div style="display: flex; justify-content: space-between; gap: 8px"><span style="font-weight: 600; font-size: 14px">Starlit Grace Drops</span><span style="font-weight: 600; font-size: 14px; white-space: nowrap">PKR [price]</span></div>
+        <span style="font-size: 12px; color: #5E5473">Muse Gold · Starlit Grace</span>
+        <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: 4px">
+          <div style="display: flex; align-items: center; gap: 10px"><button class="qty" type="button" aria-label="Decrease quantity"><svg class="ico" style="width: 14px; height: 14px" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/></svg></button><span style="font-size: 14px; font-weight: 600; min-width: 16px; text-align: center">1</span><button class="qty" type="button" aria-label="Increase quantity"><svg class="ico" style="width: 14px; height: 14px" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button></div>
+          <button class="link" type="button">Remove</button>
+        </div>
+      </div>
+    </div>
+
+    <label class="satin" style="display: flex; align-items: center; gap: 12px; padding: 14px 16px; border-radius: 16px; cursor: pointer">
+      <input type="checkbox" style="width: 20px; height: 20px; accent-color: #5B3FA6; margin: 0">
+      <span style="display: flex; flex-direction: column; gap: 2px; flex: 1 1 auto"><span style="font-weight: 600; font-size: 14px">Add a MUSE Charm to the gift box</span><span style="font-size: 12px; color: #5E5473">A cute little keepsake for the person you are gifting.</span></span>
+      <span style="font-size: 13px; font-weight: 600; white-space: nowrap">+ PKR [price]</span>
+    </label>
+
+    <div style="display: flex; flex-direction: column; gap: 10px; padding-top: 4px">
+      <label for="nm" style="font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase">Your name</label>
+      <input id="nm" type="text" placeholder="So we know who to greet" style="min-height: 46px; border-radius: 12px; border: 1.5px solid #D3C7E8; padding: 0 14px; font-size: 14px; color: #2B2140; width: 100%; box-sizing: border-box">
+      <label for="ct" style="font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; margin-top: 4px">City</label>
+      <input id="ct" type="text" placeholder="For delivery time" style="min-height: 46px; border-radius: 12px; border: 1.5px solid #D3C7E8; padding: 0 14px; font-size: 14px; color: #2B2140; width: 100%; box-sizing: border-box">
+    </div>
+  </div>
+
+  <div style="padding: 16px 24px 20px; border-top: 1px solid #EFEAF6; display: flex; flex-direction: column; gap: 12px; background: #FFFFFF">
+    <div style="display: flex; justify-content: space-between; font-size: 14px; color: #5E5473"><span>Subtotal</span><span>PKR [subtotal]</span></div>
+    <div style="display: flex; justify-content: space-between; font-size: 14px; color: #5E5473"><span>Delivery, all over Pakistan</span><span>[charges]</span></div>
+    <a class="btn btn-dark" href="#send"><svg class="ico" style="width: 18px; height: 18px" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 21l1.9-5.1A8 8 0 1 1 21 12z"/></svg> Send order on WhatsApp</a>
+    <a class="btn btn-outline" href="https://www.instagram.com/musebyanum/" style="min-height: 46px">Order via Instagram DM instead</a>
+    <span style="font-size: 11px; color: #5E5473; text-align: center; line-height: 1.5">Opens WhatsApp with your order written out. No account, no card. Cash on delivery available.</span>
+  </div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":440,"height":820}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>

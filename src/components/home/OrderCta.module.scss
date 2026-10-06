@@ -1,0 +1,52 @@
+.wrap {
+  @include container;
+  @include section;
+}
+
+.band {
+  @include satin-deep;
+  border-radius: $radius-xl;
+  padding: clamp(36px, 5vw, 72px);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  color: $plum;
+}
+
+.copy {
+  flex: 1 1 420px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.eyebrow {
+  @include eyebrow;
+  color: $plum;
+}
+
+.title {
+  @include display(clamp(38px, 4.4vw, 60px));
+  line-height: 1.03;
+}
+
+.text {
+  font-size: 17px;
+  line-height: 1.6;
+  max-width: 540px;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 0 1 300px;
+}
+
+.note {
+  font-size: 12px;
+  text-align: center;
+}

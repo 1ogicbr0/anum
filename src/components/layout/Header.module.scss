@@ -1,0 +1,145 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba($lilac-100, 0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid $lilac-200;
+}
+
+.inner {
+  @include container;
+  min-height: $header-h;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.nav {
+  display: none;
+  gap: 32px;
+  font-size: 15px;
+
+  @include mq(lg) {
+    display: flex;
+  }
+}
+
+.navLink {
+  color: $plum;
+  font-weight: 500;
+  padding: 6px 0;
+  border-bottom: 1.5px solid transparent;
+
+  &:hover {
+    color: $purple;
+  }
+
+  &.active {
+    color: $purple;
+    border-bottom-color: $purple;
+  }
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.iconBtn {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  background: transparent;
+  border-radius: $radius-pill;
+  color: $plum;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background $dur $ease;
+
+  &:hover {
+    background: #eae2f6;
+  }
+}
+
+.count {
+  position: absolute;
+  top: 4px;
+  right: 2px;
+  min-width: 18px;
+  height: 18px;
+  border-radius: $radius-pill;
+  background: $gold-light;
+  color: $plum;
+  font-size: 10px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 4px;
+}
+
+.order {
+  display: none;
+  margin-left: 8px;
+
+  @include mq(md) {
+    display: inline-flex;
+  }
+}
+
+.menuBtn {
+  @include mq(lg) {
+    display: none;
+  }
+}
+
+.search {
+  @include container;
+  padding-bottom: 14px;
+  display: flex;
+  gap: 8px;
+
+  input {
+    flex: 1;
+  }
+}
+
+.panel {
+  border-top: 1px solid $lilac-200;
+  background: $lilac-100;
+
+  @include mq(lg) {
+    display: none;
+  }
+}
+
+.panelInner {
+  @include container;
+  padding-block: 12px 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.panelLink {
+  padding: 14px 0;
+  font-size: 17px;
+  font-weight: 500;
+  color: $plum;
+  border-bottom: 1px solid $lilac-200;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &:hover {
+    color: $purple;
+  }
+}
+
+.panelCta {
+  margin-top: 16px;
+}

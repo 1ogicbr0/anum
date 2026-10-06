@@ -1,0 +1,227 @@
+@use 'abstracts' as *;
+
+:root {
+  --plum: #{$plum};
+  --purple: #{$purple};
+  --lilac-100: #{$lilac-100};
+  --lilac-200: #{$lilac-200};
+  --gold: #{$gold};
+  --gold-deep: #{$gold-deep};
+  --muted: #{$muted};
+}
+
+body {
+  font-family: $font-body;
+  font-size: 16px;
+  line-height: 1.6;
+  color: $plum;
+  background: $lilac-100;
+}
+
+a {
+  color: $purple;
+  text-decoration: none;
+  transition: color $dur $ease;
+
+  &:hover {
+    color: $plum;
+  }
+
+  @include focus-ring;
+}
+
+button,
+input,
+select {
+  @include focus-ring;
+}
+
+h1,
+h2,
+h3 {
+  font-weight: 600;
+  line-height: 1.15;
+}
+
+// Shared primitives --------------------------------------------------------
+
+.container {
+  @include container;
+}
+
+.section {
+  @include section;
+}
+
+.eyebrow {
+  @include eyebrow;
+}
+
+.display {
+  @include display;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 48px;
+  padding: 0 26px;
+  border-radius: $radius-pill;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 1;
+  border: 1.5px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: transform $dur $ease, background $dur $ease, color $dur $ease, border-color $dur $ease;
+
+  &:hover {
+    transform: translateY(-1px);
+  }
+
+  &--primary {
+    background: $purple;
+    color: $white;
+
+    &:hover {
+      background: $purple-dark;
+      color: $white;
+    }
+  }
+
+  &--outline {
+    background: transparent;
+    color: $plum;
+    border-color: $plum;
+
+    &:hover {
+      background: $plum;
+      color: $white;
+    }
+  }
+
+  &--light {
+    background: $white;
+    color: $plum;
+
+    &:hover {
+      background: #efe8f9;
+      color: $plum;
+    }
+  }
+
+  &--dark {
+    background: $plum;
+    color: $white;
+
+    &:hover {
+      background: $plum-deep;
+      color: $white;
+    }
+  }
+
+  &--ghost {
+    background: transparent;
+    color: $white;
+    border-color: rgba($white, 0.45);
+
+    &:hover {
+      border-color: $white;
+      color: $white;
+    }
+  }
+
+  &--sm {
+    min-height: 42px;
+    padding: 0 20px;
+    font-size: 14px;
+  }
+
+  &--block {
+    width: 100%;
+  }
+
+  svg {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 38px;
+  padding: 0 16px;
+  border-radius: $radius-pill;
+  border: 1.5px solid $lilac-200;
+  background: $white;
+  color: $plum;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: border-color $dur $ease, background $dur $ease, color $dur $ease;
+
+  &:hover {
+    border-color: $plum;
+    color: $plum;
+  }
+
+  &--on,
+  &[aria-pressed='true'] {
+    background: $plum;
+    color: $white;
+    border-color: $plum;
+  }
+}
+
+.field {
+  min-height: 50px;
+  width: 100%;
+  border-radius: 14px;
+  border: 1.5px solid #d3c7e8;
+  background: $white;
+  padding: 0 16px;
+  font-size: 15px;
+  color: $plum;
+
+  &::placeholder {
+    color: #9a90b0;
+  }
+}
+
+.label {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.visually-hidden {
+  @include visually-hidden;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: $radius-pill;
+  border: 1px solid rgba($plum, 0.15);
+  display: inline-block;
+  flex: none;
+
+  &--gold {
+    background: linear-gradient(135deg, #f0d898, #c9a24a);
+  }
+
+  &--silver {
+    background: linear-gradient(135deg, #eeeef2, #c7c8cf);
+  }
+}
+
+// Anchored sections (/#gifting, /#reviews, /about#care) clear the sticky header.
+[id] {
+  scroll-margin-top: calc(#{$header-h} + 24px);
+}

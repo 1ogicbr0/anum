@@ -1,0 +1,52 @@
+// MUSE by Anum design tokens (see design/Style.dc.html and BRAND-ANALYSIS.md)
+
+// Colour
+$plum: #2B2140;        // ink, dark surfaces
+$plum-deep: #1C1530;
+$purple: #5B3FA6;      // primary action, links
+$purple-dark: #4A3290;
+$lilac-100: #F6F2FB;   // page ground
+$lilac-200: #E3D9F2;   // lines, soft surfaces
+$lilac-300: #D3C3EC;   // satin
+$lilac-400: #B8A3DF;
+$lilac-500: #9E85D2;   // deep satin
+$gold: #C9A24A;        // accents, large text only
+$gold-light: #E6C87A;  // gold on dark
+$gold-deep: #8C6A24;   // gold for small text (passes contrast on light)
+$silver: #C7C8CF;
+$muted: #5E5473;       // captions on light
+$white: #FFFFFF;
+$line: #EFEAF6;
+$on-plum: #D9CFF0;     // body text on plum
+$on-plum-muted: #B9ADD6;
+
+// Type
+$font-display: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+$font-body: 'Manrope', system-ui, -apple-system, 'Segoe UI', sans-serif;
+$font-logo: 'Nunito', $font-body;
+
+// Shape
+$radius-sm: 12px;
+$radius-md: 18px;
+$radius-lg: 24px;
+$radius-xl: 32px;
+$radius-pill: 999px;
+$shadow-card: 0 18px 40px rgba(43, 33, 64, 0.12);
+$shadow-pop: 0 24px 60px rgba(43, 33, 64, 0.18);
+
+// Layout
+$container: 1280px;
+$gutter: clamp(20px, 5vw, 80px);
+$section-y: clamp(56px, 7vw, 88px);
+$header-h: 84px;
+
+$breakpoints: (
+  sm: 480px,
+  md: 768px,
+  lg: 1024px,
+  xl: 1280px,
+);
+
+// Motion
+$ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+$dur: 0.2s;

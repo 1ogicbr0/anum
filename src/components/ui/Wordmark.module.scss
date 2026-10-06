@@ -1,0 +1,26 @@
+.mark {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1;
+  color: inherit;
+  text-decoration: none;
+}
+
+.muse {
+  @include wordmark(30px);
+}
+
+.sub {
+  font-family: $font-body;
+  font-size: 9px;
+  letter-spacing: 0.34em;
+  margin-top: 3px;
+  font-weight: 500;
+  opacity: 0.75;
+  padding-left: 0.34em;
+}
+
+.lg .muse {
+  font-size: 34px;
+}

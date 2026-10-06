@@ -1,0 +1,25 @@
+{
+  "v": 3,
+  "createdOnFiles": { "v": 1, "at": "2026-10-06T18:50:00Z" },
+  "title": "MUSE by Anum Website",
+  "launch": { "view": "canvas" },
+  "pages": [],
+  "boards": {
+    "Style.dc.html": { "x": 0, "y": 0, "w": 1440, "h": 900, "title": "Style tile" },
+    "Main.dc.html": { "x": 0, "y": 1300, "w": 1440, "h": 5600, "title": "A · Home — desktop", "expand": "fill" },
+    "MobileHome.dc.html": { "x": 1520, "y": 1300, "w": 390, "h": 2700, "title": "A · Home — mobile", "expand": "fill" },
+    "Shop.dc.html": { "x": 0, "y": 7300, "w": 1440, "h": 1750, "title": "Shop — Rings", "expand": "fill" },
+    "Product.dc.html": { "x": 1520, "y": 7300, "w": 1440, "h": 1950, "title": "Product — Customizable Signet Ring", "expand": "fill", "is_interactive": true },
+    "HomeB.dc.html": { "x": 0, "y": 9650, "w": 1440, "h": 3800, "title": "B · Home — catalogue-first, desktop", "expand": "fill", "is_interactive": true },
+    "MobileHomeB.dc.html": { "x": 1520, "y": 9650, "w": 390, "h": 2700, "title": "B · Home — catalogue-first, mobile", "expand": "fill" },
+    "OrderDrawer.dc.html": { "x": 1990, "y": 9650, "w": 440, "h": 820, "title": "B · WhatsApp order drawer" }
+  },
+  "order": ["Main.dc.html", "Style.dc.html", "MobileHome.dc.html", "Shop.dc.html", "Product.dc.html", "HomeB.dc.html", "MobileHomeB.dc.html", "OrderDrawer.dc.html"],
+  "notes": {
+    "t1": { "x": 0, "y": -280, "text": "Foundations — palette, type, components", "kind": "title1", "maxW": 1440 },
+    "t2": { "x": 0, "y": 1020, "text": "Direction A — brand-led home (desktop and mobile)", "kind": "title1", "maxW": 1910 },
+    "t3": { "x": 0, "y": 7020, "text": "Shop and product — order via WhatsApp / Instagram DM", "kind": "title1", "maxW": 2960 },
+    "t4": { "x": 0, "y": 9370, "text": "Direction B — catalogue-first home, structured like tesoro.pk but in the Muse brand", "kind": "title1", "maxW": 2430 }
+  },
+  "designSystems": []
+}

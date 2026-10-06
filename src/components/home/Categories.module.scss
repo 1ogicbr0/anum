@@ -1,0 +1,34 @@
+.wrap {
+  @include container;
+  padding-bottom: $section-y;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 16px;
+}
+
+.tile {
+  @include satin;
+  min-height: 190px;
+  border-radius: $radius-md;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  color: $plum;
+  font-weight: 600;
+  font-size: 15px;
+  transition: transform $dur $ease, color $dur $ease;
+
+  svg {
+    color: $gold-deep;
+  }
+
+  &:hover {
+    transform: translateY(-3px);
+    color: $purple;
+  }
+}

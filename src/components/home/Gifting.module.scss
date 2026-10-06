@@ -1,0 +1,58 @@
+.section {
+  background: $white;
+  @include section;
+}
+
+.inner {
+  @include container;
+}
+
+.chips {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  @include card;
+  background: $lilac-100;
+  display: flex;
+  flex-direction: column;
+}
+
+.img {
+  height: 220px;
+  margin: 16px 16px 0;
+  border-radius: 14px;
+  width: auto;
+}
+
+.box {
+  background: $white;
+  border: 1px solid $lilac-200;
+  color: $purple;
+}
+
+.body {
+  padding: 22px 24px 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.text {
+  font-size: 14px;
+  color: $muted;
+  line-height: 1.6;
+}

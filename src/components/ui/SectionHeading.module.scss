@@ -1,0 +1,35 @@
+.head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-bottom: 36px;
+}
+
+.center {
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
+}
+
+.title {
+  @include display;
+  margin-top: 8px;
+}
+
+.aside {
+  max-width: 420px;
+  color: $muted;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.link {
+  font-weight: 600;
+  font-size: 15px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}

@@ -1,0 +1,71 @@
+.wrap {
+  @include container;
+  padding-bottom: $section-y;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  @include card;
+  min-height: 340px;
+  padding: 36px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: $plum;
+}
+
+.gold {
+  @include satin-gold;
+
+  .eyebrow {
+    color: #5a4414;
+  }
+
+  .sub {
+    color: #3f3214;
+  }
+}
+
+.silver {
+  @include satin-silver;
+
+  .eyebrow {
+    color: #4a4d57;
+  }
+
+  .sub {
+    color: #3f4149;
+  }
+}
+
+.eyebrow {
+  @include eyebrow;
+}
+
+.title {
+  @include display(40px);
+}
+
+.sub {
+  font-size: 15px;
+  margin-top: 10px;
+}
+
+.link {
+  font-weight: 600;
+  font-size: 15px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.banner {
+  border-radius: 28px;
+  height: clamp(320px, 44vw, 600px);
+  margin-bottom: 20px;
+}
