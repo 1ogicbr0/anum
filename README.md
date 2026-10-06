@@ -52,6 +52,32 @@ Styling: SCSS modules per component. Tokens and mixins are injected into every `
   two Élan jhumkas, Pearl Choker Heart Set and Pearl Blossom Set (35 products).
 - The Heart Muse Anklet shows PKR 1,299, the one price the brand has published (anklets highlight).
 
+## Home-page animations (GSAP)
+
+The home page is animated with GSAP (ScrollTrigger + SplitText, `src/animations/home.js`), one
+signature per section so no two sections move alike:
+
+| Section | Entrance | Hover / live |
+| --- | --- | --- |
+| Hero | headline characters rise out of a mask, photo curtain-reveals, layers parallax on scroll | the visual tilts towards the pointer |
+| Trust strip | icons spin in like coins | icons wobble |
+| Marquee | words lean with scroll speed and straighten when it stops | — |
+| Categories | tiles flip down into place, title lines slide from a mask | icon lifts and turns |
+| Collections | featured edit swings in from the left, others from the right, title sharpens from blur | cards tilt in 3D |
+| Signet | band irises open, ring spins in (elastic) and keeps floating, title engraves letter by letter | — |
+| Gold & silver | photo wipes open from its centre, finishes slide in from either side | card lifts, eyebrow letters spread |
+| Gifting | title words flip, chips pop in at random, cards set down with a tilt | photos float |
+| Video strip | clips are dealt out of a stack into the row | — |
+| Reviews | cards tossed down with alternating spin, quotes sharpen into focus | — |
+| Instagram | avatar spins in, tiles bloom from the centre of the grid | — |
+| Order band | headline ripples out from its middle, button glows while in view | — |
+
+`useSectionAnimation(ref, builder)` hands a section to GSAP: it strips the CSS `data-reveal`
+attributes inside it (so nothing animates twice), runs the builder inside `gsap.matchMedia()` for
+`prefers-reduced-motion: no-preference` only, and reverts everything when the section unmounts.
+Entrance tweens end with `clearProps` so the existing CSS hovers keep working. Other pages still
+use the lighter CSS `data-reveal` system.
+
 ## Motion
 
 `src/styles/_motion.scss` + `RevealObserver`: add `data-reveal` to any element to fade it up when it

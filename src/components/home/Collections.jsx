@@ -1,3 +1,6 @@
+import { useRef } from 'react'
+import { useSectionAnimation } from '@/hooks/useSectionAnimation'
+import { collections as animateCollections } from '@/animations/home'
 import { Link } from 'react-router-dom'
 import Icon from '@/components/ui/Icon'
 import ProductImage from '@/components/ui/ProductImage'
@@ -16,9 +19,11 @@ const subtitles = {
 export default function Collections() {
   const featured = collections.find((c) => c.slug === 'lilac-eclat')
   const rest = collections.filter((c) => ['white-glow', 'starlit-grace', 'elan', 'amour-eclat'].includes(c.slug))
+  const ref = useRef(null)
+  useSectionAnimation(ref, animateCollections)
 
   return (
-    <section className={s.section} id="collections" aria-label="Collections">
+    <section ref={ref} className={s.section} id="collections" aria-label="Collections">
       <div className={s.inner}>
         <SectionHeading
           eyebrow="The collections"
@@ -26,7 +31,7 @@ export default function Collections() {
           aside="Five edits, one mood: timeless gold, a little sparkle and the dreamy lilac that is unmistakably Muse."
         />
         <div className={s.grid} data-reveal="stagger">
-          <Link to={`/collections/${featured.slug}`} className={s.featured}>
+          <Link to={`/collections/${featured.slug}`} className={s.featured} data-anim="featured">
             <ProductImage className={s.featuredImg} src={featured.image} alt={featured.name} ratio="1 / 1" />
             <div className={s.featuredBody}>
               <span className="eyebrow">Featured collection</span>
@@ -39,7 +44,7 @@ export default function Collections() {
           </Link>
 
           {rest.map((c) => (
-            <Link key={c.slug} to={`/collections/${c.slug}`} className={s.card}>
+            <Link key={c.slug} to={`/collections/${c.slug}`} className={s.card} data-anim="card">
               <ProductImage className={s.cardImg} src={c.image} alt={c.name} tone={c.tone} icon={c.icon} ratio="4 / 5" label={`[Photo — ${c.name}]`} />
               <div className={s.cardBody}>
                 <h3 className={s.cardTitle}>{c.name}</h3>

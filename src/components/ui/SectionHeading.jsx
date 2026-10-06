@@ -4,7 +4,7 @@ import s from './SectionHeading.module.scss'
 
 export default function SectionHeading({ eyebrow, title, aside, linkTo, linkLabel, center, as: Tag = 'h2' }) {
   return (
-    <div className={`${s.head} ${center ? s.center : ''}`} data-reveal>
+    <div className={`${s.head} ${center ? s.center : ''}`} data-reveal data-anim="heading">
       <div>
         {eyebrow && <div className="eyebrow">{eyebrow}</div>}
         <Tag className={s.title}>{title}</Tag>

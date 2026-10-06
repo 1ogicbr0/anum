@@ -1,3 +1,6 @@
+import { useRef } from 'react'
+import { useSectionAnimation } from '@/hooks/useSectionAnimation'
+import { reviews as animateReviews } from '@/animations/home'
 import Icon from '@/components/ui/Icon'
 import SectionHeading from '@/components/ui/SectionHeading'
 import { reviews } from '@/data/reviews'
@@ -10,12 +13,14 @@ const storyClips = [clipBySlug['reviews-01'], clipBySlug['reviews-03'], clipBySl
 const storyPhoto = storyImageBySlug['reviews-02']
 
 export default function Reviews({ limit = 6 }) {
+  const ref = useRef(null)
+  useSectionAnimation(ref, animateReviews)
   return (
-    <section className={s.wrap} id="reviews" aria-label="Reviews">
+    <section ref={ref} className={s.wrap} id="reviews" aria-label="Reviews">
       <SectionHeading center eyebrow="Muse Reviews" title="Loved by the women who wear it." aside="Real comments from @musebyanum, as they were written." />
       <div className={s.grid} data-reveal="stagger">
         {reviews.slice(0, limit).map((r, i) => (
-          <figure className={s.card} key={`${r.name}-${i}`}>
+          <figure className={s.card} key={`${r.name}-${i}`} data-anim="card">
             <span className={s.badge}>
               <Icon name="instagram" size={14} /> Instagram comment
             </span>
@@ -31,12 +36,12 @@ export default function Reviews({ limit = 6 }) {
       </div>
 
       <div className={s.stories}>
-        <div className={s.storiesHead} data-reveal>
+        <div className={s.storiesHead} data-anim="storiesHead">
           <span className="eyebrow">From the Muse Reviews highlight</span>
           <p>Customers and creators sharing their pieces in their own stories, reposted by MUSE. Tap a clip to play it.</p>
           <Link to="/videos?category=reviews" className={s.storiesLink}>All review stories <Icon name="arrow" size={14} /></Link>
         </div>
-        <div className={s.storiesRow} data-reveal="stagger">
+        <div className={s.storiesRow} data-anim="storiesRow">
           {storyClips.map((c) => (
             <HighlightClip key={c.slug} clip={c} compact className={s.story} />
           ))}

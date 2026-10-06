@@ -1,7 +1,8 @@
-import { useCallback, useState } from 'react'
+import { useState } from 'react'
 import Button from './Button'
 import Icon from './Icon'
-import OrderSheet, { copyText } from './OrderSheet'
+import OrderSheet from './OrderSheet'
+import { copyText } from '@/utils/clipboard'
 import { buildOrderLink, buildOrderMessage, orderChannel, orderLabel } from '@/utils/order'
 
 /**
@@ -17,7 +18,7 @@ export default function OrderButton({ scenario, context, children, icon = true, 
   const message = buildOrderMessage(opts)
   const instagram = orderChannel() === 'instagram'
   const [sheet, setSheet] = useState(null)
-  const close = useCallback(() => setSheet(null), [])
+  const close = () => setSheet(null)
 
   if (!instagram) {
     return (

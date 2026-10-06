@@ -1,14 +1,19 @@
+import { useRef } from 'react'
+import { useSectionAnimation } from '@/hooks/useSectionAnimation'
+import { trust } from '@/animations/home'
 import Icon from '@/components/ui/Icon'
 import { brand } from '@/data/brand'
 import s from './TrustStrip.module.scss'
 
 export default function TrustStrip() {
+  const ref = useRef(null)
+  useSectionAnimation(ref, trust)
   return (
-    <section className={s.wrap} aria-label="Why Muse">
+    <section ref={ref} className={s.wrap} aria-label="Why Muse">
       <div className={s.strip} data-reveal="stagger">
         {brand.claims.map((c) => (
-          <div className={s.item} key={c.title}>
-            <span className={s.icon}>
+          <div className={s.item} key={c.title} data-anim="item">
+            <span className={s.icon} data-anim="icon">
               <Icon name={c.icon} />
             </span>
             <div>

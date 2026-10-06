@@ -21,6 +21,7 @@ export default function ProductImage({
   style,
   imgStyle,
   children,
+  ...rest
 }) {
   const t = tone ?? product?.tone ?? 'lilac'
   const i = icon ?? product?.icon ?? 'sparkle'
@@ -29,7 +30,7 @@ export default function ProductImage({
 
   if (image) {
     return (
-      <div className={`${s.ph} ${s[t] ?? s.lilac} ${className}`} style={{ aspectRatio: ratio, ...style }}>
+      <div className={`${s.ph} ${s[t] ?? s.lilac} ${className}`} style={{ aspectRatio: ratio, ...style }} {...rest}>
         <img
           className={`${s.img} ${fit === 'contain' ? s.contain : ''}`}
           src={image}
@@ -44,7 +45,7 @@ export default function ProductImage({
   }
 
   return (
-    <div className={`${s.ph} ${s[t] ?? s.lilac} ${className}`} style={{ aspectRatio: ratio, ...style }}>
+    <div className={`${s.ph} ${s[t] ?? s.lilac} ${className}`} style={{ aspectRatio: ratio, ...style }} {...rest}>
       <Icon name={i} size={iconSize} strokeWidth={1.1} />
       <span className={s.label}>{text}</span>
       {children}

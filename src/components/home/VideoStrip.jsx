@@ -1,3 +1,6 @@
+import { useRef } from 'react'
+import { useSectionAnimation } from '@/hooks/useSectionAnimation'
+import { videoStrip } from '@/animations/home'
 import { Link } from 'react-router-dom'
 import Icon from '@/components/ui/Icon'
 import SectionHeading from '@/components/ui/SectionHeading'
@@ -6,8 +9,10 @@ import { clips, featuredClips, videos } from '@/data/videos'
 import s from './VideoStrip.module.scss'
 
 export default function VideoStrip() {
+  const ref = useRef(null)
+  useSectionAnimation(ref, videoStrip)
   return (
-    <section className={s.section} id="videos" aria-label="Videos">
+    <section ref={ref} className={s.section} id="videos" aria-label="Videos">
       <div className={s.inner}>
         <SectionHeading
           eyebrow="Straight from the highlights"
@@ -16,7 +21,7 @@ export default function VideoStrip() {
           linkLabel="All videos"
           aside="Stories saved from the @musebyanum highlights: the collections up close, on the wrist and in the mirror. Most are photos set to music, so tap one to hear it."
         />
-        <div className={s.scroller} data-reveal="stagger">
+        <div className={s.scroller} data-anim="scroller">
           {featuredClips.map((c) => (
             <HighlightClip key={c.slug} clip={c} compact className={s.item} />
           ))}
