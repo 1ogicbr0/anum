@@ -18,8 +18,10 @@
   flex: 1 1 360px;
   min-width: 0;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 24px;
 
   svg {
     animation: float 6s ease-in-out infinite;
@@ -128,4 +130,25 @@
 .tryHint {
   font-size: 13px;
   color: rgba($white, 0.7);
+}
+
+.tryMobile {
+  width: 100%;
+  max-width: 420px;
+  align-items: center;
+  text-align: center;
+
+  .tryRow {
+    justify-content: center;
+  }
+
+  @include mq(md) {
+    display: none;
+  }
+}
+
+.tryDesktop {
+  @include mq-down(md) {
+    display: none;
+  }
 }

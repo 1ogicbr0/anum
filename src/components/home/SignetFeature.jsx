@@ -15,11 +15,36 @@ export default function SignetFeature() {
   const [letters, setLetters] = useState('')
   const engraved = formatInitials(letters)
   const onType = (e) => setLetters(e.target.value.replace(/[^A-Za-z]/g, '').toUpperCase().slice(0, 3))
+  // Rendered twice: under the ring on phones, in the text column on wider screens (CSS shows one).
+  const initialsBox = (id, extra) => (
+    <div className={`${s.try} ${extra}`} data-anim="try">
+      <label htmlFor={id} className={s.tryLabel}>Try your initials</label>
+      <div className={s.tryRow}>
+        <input
+          id={id}
+          className={s.tryField}
+          type="text"
+          inputMode="text"
+          autoComplete="off"
+          autoCapitalize="characters"
+          maxLength={3}
+          placeholder="A M"
+          value={letters}
+          onChange={onType}
+          aria-describedby={`${id}-hint`}
+        />
+        <span id={`${id}-hint`} className={s.tryHint}>{letters.length ? `${letters.length} of 3 letters` : 'Up to three letters'}</span>
+      </div>
+    </div>
+  )
   return (
     <section ref={ref} className={s.wrap} id="customise" aria-label="Customizable signet ring">
       <div className={s.band} data-anim="band">
-        <div className={s.visual} data-anim="ring">
-          <RingPreview id="home-ring" initials={engraved || 'A · M'} />
+        <div className={s.visual}>
+          <div data-anim="ring">
+            <RingPreview id="home-ring" initials={engraved || 'A · M'} />
+          </div>
+          {initialsBox('home-initials-m', s.tryMobile)}
         </div>
         <div className={s.copy}>
           <span className={s.eyebrow} data-anim="eyebrow">{ring.tagline}</span>
@@ -32,25 +57,7 @@ export default function SignetFeature() {
               </li>
             ))}
           </ul>
-          <div className={s.try} data-anim="try">
-            <label htmlFor="home-initials" className={s.tryLabel}>Try your initials</label>
-            <div className={s.tryRow}>
-              <input
-                id="home-initials"
-                className={s.tryField}
-                type="text"
-                inputMode="text"
-                autoComplete="off"
-                autoCapitalize="characters"
-                maxLength={3}
-                placeholder="A M"
-                value={letters}
-                onChange={onType}
-                aria-describedby="home-initials-hint"
-              />
-              <span id="home-initials-hint" className={s.tryHint}>{letters.length ? `${letters.length} of 3 letters` : 'Up to three letters'}</span>
-            </div>
-          </div>
+          {initialsBox('home-initials', s.tryDesktop)}
           <div className={s.ctas} data-anim="ctas">
             <Button to={letters ? `/product/${ring.slug}?initials=${letters}` : `/product/${ring.slug}`} variant="light">Design your ring</Button>
             <Button to="/ring-size-guide" variant="ghost">Ring size guide</Button>

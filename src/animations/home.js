@@ -240,7 +240,7 @@ export function signet(el) {
     .from(one(el, '[data-anim=text]'), { opacity: 0, y: 14, duration: 0.7 }, 1.3)
     .from(q(el, '[data-anim=list] li'), { x: -24, opacity: 0, duration: 0.5, stagger: 0.12 }, 1.4)
     .from(q(el, '[data-anim=list] svg'), { scale: 0, rotation: -90, duration: 0.5, ease: 'back.out(3)', stagger: 0.12 }, 1.45)
-    .from(one(el, '[data-anim=try]'), { y: 16, opacity: 0, duration: 0.6 }, 1.6)
+    .from(q(el, '[data-anim=try]'), { y: 16, opacity: 0, duration: 0.6 }, 1.6)
     .from(q(el, '[data-anim=ctas] > *'), { y: 16, opacity: 0, duration: 0.6, stagger: 0.1, clearProps: 'all' }, 1.75)
   tl.eventCallback('onComplete', () => gsap.to(ring, { y: -10, rotation: 3, duration: 2.8, yoyo: true, repeat: -1, ease: 'sine.inOut' }))
 }
