@@ -48,6 +48,7 @@ export default function Footer() {
 
         <div className={s.col}>
           <span className={s.colTitle}>Help</span>
+          <Link className={s.link} to="/videos">Videos</Link>
           <Link className={s.link} to="/ring-size-guide">Ring size guide</Link>
           <Link className={s.link} to="/#order">How to order</Link>
           <Link className={s.link} to="/about#delivery">Delivery across Pakistan</Link>

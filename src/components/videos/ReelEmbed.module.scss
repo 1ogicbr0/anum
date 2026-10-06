@@ -1,0 +1,56 @@
+.card {
+  @include card;
+  background: $white;
+  display: flex;
+  flex-direction: column;
+}
+
+.frame {
+  @include satin;
+  position: relative;
+  aspect-ratio: 9 / 16;
+  width: 100%;
+
+  iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    background: $white;
+  }
+}
+
+.body {
+  padding: 16px 18px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.cat {
+  @include eyebrow;
+  font-size: 11px;
+}
+
+.title {
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: $muted;
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+}

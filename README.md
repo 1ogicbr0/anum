@@ -44,6 +44,23 @@ carries a light sweep. All of it is disabled under `prefers-reduced-motion`.
 Photos fill their frames edge to edge; frames are 4:5 to match the Instagram posts so little is
 cropped (`fit="contain"` on `ProductImage` letterboxes instead).
 
+## Videos and reviews
+
+`src/data/videos.js` lists the brand's public reels, categorised to mirror the Instagram highlights
+(Meet MUSE, Earrings, Bracelets, Gifting & MUSE Charm, Reviews). They play through Instagram's
+embed on the home "Watch" strip and the `/videos` page, so no video is copied off Instagram.
+The highlights themselves are only served to logged-in users and cannot be embedded.
+
+`src/data/reviews.js` quotes real customer comments from the posts (handle + comment as written),
+each linking to its post.
+
+## Ordering messages
+
+Every order button is an `OrderButton` with a `scenario` (hero, product, category, collection,
+wishlist, gifting, size-help) so the message already says what the customer was looking at.
+WhatsApp receives the text in the link; Instagram DM links cannot carry text, so the message is
+copied to the clipboard with a toast and the product page shows a preview of it.
+
 ## Photography
 
 `public/images/instagram/` holds 25 post photos, the profile picture and a frame from the MUSE
@@ -61,7 +78,6 @@ Search the code for `[` placeholders. The main ones:
   order button opens an Instagram DM. Also `email`, delivery time and charges.
 - `src/data/products.js` → `price` (currently `null`, shown as "DM for price"). Six Lilac Éclat
   rings and the four White Glow pendants share one group photo each; individual shots would help.
-- `src/data/reviews.js` → real reviews from the "Muse Reviews" highlight.
 - Logo files (the wordmark is set in Nunito as a stand-in) and confirmation of the lilac/purple hexes.
 
 ## Ordering flow

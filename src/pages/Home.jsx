@@ -6,6 +6,7 @@ import Collections from '@/components/home/Collections'
 import SignetFeature from '@/components/home/SignetFeature'
 import GoldSilver from '@/components/home/GoldSilver'
 import Gifting from '@/components/home/Gifting'
+import VideoStrip from '@/components/home/VideoStrip'
 import Reviews from '@/components/home/Reviews'
 import InstagramFeed from '@/components/home/InstagramFeed'
 import OrderCta from '@/components/home/OrderCta'
@@ -23,6 +24,7 @@ export default function Home() {
       <SignetFeature />
       <GoldSilver />
       <Gifting />
+      <VideoStrip />
       <Reviews />
       <InstagramFeed />
       <OrderCta />

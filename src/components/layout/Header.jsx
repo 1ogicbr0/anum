@@ -13,6 +13,7 @@ const links = [
   { to: '/collections', label: 'Collections' },
   { to: '/product/customizable-signet-ring', label: 'Customise' },
   { to: '/#gifting', label: 'Gifting' },
+  { to: '/videos', label: 'Videos' },
   { to: '/#reviews', label: 'Reviews' },
   { to: '/about', label: 'About' },
 ]

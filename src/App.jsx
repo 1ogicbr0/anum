@@ -7,6 +7,7 @@ import Collection from '@/pages/Collection'
 import Product from '@/pages/Product'
 import RingSizeGuide from '@/pages/RingSizeGuide'
 import About from '@/pages/About'
+import Videos from '@/pages/Videos'
 import NotFound from '@/pages/NotFound'
 
 export default function App() {
@@ -22,6 +23,7 @@ export default function App() {
           <Route path="product/:slug" element={<Product />} />
           <Route path="ring-size-guide" element={<RingSizeGuide />} />
           <Route path="about" element={<About />} />
+          <Route path="videos" element={<Videos />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
