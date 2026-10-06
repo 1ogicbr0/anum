@@ -3,8 +3,9 @@ import { NavLink, useNavigate } from 'react-router-dom'
 import Icon from '@/components/ui/Icon'
 import Wordmark from '@/components/ui/Wordmark'
 import Button from '@/components/ui/Button'
+import OrderButton from '@/components/ui/OrderButton'
 import { useWishlist } from '@/hooks/useWishlist'
-import { buildOrderLink, orderLabel } from '@/utils/order'
+import { orderLabel } from '@/utils/order'
 import s from './Header.module.scss'
 
 const links = [
@@ -64,9 +65,7 @@ export default function Header() {
             <Icon name="heart" />
             {count > 0 && <span className={s.count}>{count}</span>}
           </NavLink>
-          <Button href={buildOrderLink()} size="sm" className={s.order}>
-            {orderLabel()}
-          </Button>
+          <OrderButton size="sm" className={s.order} icon={false} />
           <button className={`${s.iconBtn} ${s.menuBtn}`} type="button" aria-label={open ? 'Close menu' : 'Open menu'} aria-expanded={open} onClick={() => setOpen((v) => !v)}>
             <Icon name={open ? 'close' : 'menu'} />
           </button>
@@ -97,9 +96,9 @@ export default function Header() {
                 {l.label} <Icon name="arrow" size={18} />
               </NavLink>
             ))}
-            <Button href={buildOrderLink()} variant="primary" block className={s.panelCta}>
-              <Icon name="chat" /> {orderLabel()}
-            </Button>
+            <OrderButton variant="primary" block className={s.panelCta}>
+              {orderLabel()}
+            </OrderButton>
           </div>
         </div>
       )}

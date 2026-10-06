@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom'
 import Button from '@/components/ui/Button'
+import OrderButton from '@/components/ui/OrderButton'
 import Icon from '@/components/ui/Icon'
 import ProductImage from '@/components/ui/ProductImage'
 import { brand } from '@/data/brand'
-import { buildOrderLink, orderLabel } from '@/utils/order'
 import s from './Hero.module.scss'
 
 export default function Hero() {
@@ -17,9 +17,7 @@ export default function Hero() {
           <Button to="/shop">
             Shop the edit <Icon name="arrow" />
           </Button>
-          <Button href={buildOrderLink()} variant="outline">
-            <Icon name="chat" /> {orderLabel()}
-          </Button>
+          <OrderButton scenario="hero" variant="outline" />
         </div>
         <div className={s.perks}>
           <span><Icon name="shield" size={18} /> Anti-tarnish</span>

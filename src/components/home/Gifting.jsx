@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import ProductImage from '@/components/ui/ProductImage'
+import OrderButton from '@/components/ui/OrderButton'
 import SectionHeading from '@/components/ui/SectionHeading'
 import { brand } from '@/data/brand'
 import { addOns } from '@/data/products'
@@ -17,6 +18,7 @@ export default function Gifting() {
           {chips.map((c) => (
             <Link key={c} to="/shop?occasion=gifting" className="chip">{c}</Link>
           ))}
+          <OrderButton scenario="gifting" variant="outline" size="sm">Ask us for gift ideas</OrderButton>
         </div>
         <div className={s.grid} data-reveal="stagger">
           <div className={s.card}>

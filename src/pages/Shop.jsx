@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react"
 import { Link, useParams, useSearchParams } from 'react-router-dom'
 import Button from '@/components/ui/Button'
+import OrderButton from '@/components/ui/OrderButton'
 import Icon from '@/components/ui/Icon'
 import Filters from '@/components/shop/Filters'
 import ProductGrid from '@/components/shop/ProductGrid'
@@ -9,7 +10,6 @@ import { products } from '@/data/products'
 import { brand } from '@/data/brand'
 import { useWishlist } from '@/hooks/useWishlist'
 import { useDocumentTitle } from '@/hooks/useDocumentTitle'
-import { buildOrderLink, orderLabel } from '@/utils/order'
 import s from './Shop.module.scss'
 
 const sorters = {
@@ -132,7 +132,10 @@ export default function Shop() {
             <div className={s.orderText}>Send us the piece and your size. {brand.delivery.headline}.</div>
           </div>
           <div className={s.orderActions}>
-            <Button href={buildOrderLink()}><Icon name="chat" /> {orderLabel()}</Button>
+            <OrderButton
+              scenario={wishlistOnly ? 'wishlist' : cat ? 'category' : 'general'}
+              context={{ category: cat?.name.toLowerCase(), items: list.map((p) => p.name) }}
+            />
             <Button href={brand.instagramUrl} variant="outline"><Icon name="instagram" /> @{brand.handle}</Button>
           </div>
         </div>

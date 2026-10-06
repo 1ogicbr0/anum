@@ -41,8 +41,8 @@ the hero has its own entrance, cards zoom their photo on hover, the wishlist hea
 gains a shadow once scrolled, a brand marquee runs under the trust strip, and the ring preview
 carries a light sweep. All of it is disabled under `prefers-reduced-motion`.
 
-Photos are never cropped: `ProductImage` letterboxes them on the satin backdrop (default 4:5 box,
-`fit="cover"` opts back in to filling).
+Photos fill their frames edge to edge; frames are 4:5 to match the Instagram posts so little is
+cropped (`fit="contain"` on `ProductImage` letterboxes instead).
 
 ## Photography
 

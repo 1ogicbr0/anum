@@ -1,6 +1,7 @@
 import { Link, Navigate, useParams } from 'react-router-dom'
 import ProductImage from '@/components/ui/ProductImage'
 import ProductGrid from '@/components/shop/ProductGrid'
+import OrderButton from '@/components/ui/OrderButton'
 import { collectionBySlug } from '@/data/collections'
 import { productsByCollection } from '@/data/products'
 import { useDocumentTitle } from '@/hooks/useDocumentTitle'
@@ -31,6 +32,13 @@ export default function Collection() {
       </div>
       <section className={s.grid} aria-label={`${collection.name} pieces`}>
         <ProductGrid products={list} emptyText="Pieces from this edit are being photographed. Message us to see what is available now." />
+        <div className={s.orderBand} data-reveal>
+          <div>
+            <div className={s.orderTitle}>Love {collection.name}? Ask us about it.</div>
+            <div className={s.orderText}>We reply with prices and what is in stock right now.</div>
+          </div>
+          <OrderButton scenario="collection" context={{ collection: collection.name }} />
+        </div>
       </section>
     </>
   )

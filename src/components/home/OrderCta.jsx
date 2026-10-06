@@ -1,7 +1,5 @@
-import Button from '@/components/ui/Button'
-import Icon from '@/components/ui/Icon'
+import OrderButton from '@/components/ui/OrderButton'
 import { brand } from '@/data/brand'
-import { buildOrderLink } from '@/utils/order'
 import s from './OrderCta.module.scss'
 
 export default function OrderCta() {
@@ -17,14 +15,9 @@ export default function OrderCta() {
           </p>
         </div>
         <div className={s.actions}>
-          {hasWhatsApp && (
-            <Button href={buildOrderLink()} variant="dark">
-              <Icon name="chat" /> WhatsApp {brand.whatsappNumber}
-            </Button>
-          )}
-          <Button href={brand.instagramDmUrl} variant={hasWhatsApp ? 'light' : 'dark'}>
-            <Icon name="instagram" /> DM “MUSE” on Instagram
-          </Button>
+          <OrderButton scenario="general" variant="dark">
+            {hasWhatsApp ? `WhatsApp ${brand.whatsappNumber}` : 'DM “MUSE” on Instagram'}
+          </OrderButton>
           <span className={s.note}>{brand.delivery.note} · {brand.delivery.headline}</span>
         </div>
       </div>

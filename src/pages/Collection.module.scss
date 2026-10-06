@@ -131,3 +131,26 @@
   font-size: 14px;
   color: $muted;
 }
+
+.orderBand {
+  margin-top: 40px;
+  background: $white;
+  border-radius: $radius-lg;
+  padding: 28px clamp(20px, 3vw, 40px);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.orderTitle {
+  @include display(30px);
+  line-height: 1.1;
+}
+
+.orderText {
+  font-size: 14px;
+  color: $muted;
+  margin-top: 6px;
+}

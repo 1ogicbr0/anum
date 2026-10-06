@@ -3,8 +3,8 @@ import s from './ProductImage.module.scss'
 
 /**
  * Shows the product photo when one exists, otherwise a branded lilac placeholder
- * with the product's line icon and a labelled caption. Photos are letterboxed on the
- * satin backdrop so nothing is cropped; pass fit="cover" to fill instead.
+ * with the product's line icon and a labelled caption. Photos fill their frame edge to
+ * edge (frames are 4:5 to match the posts, so little is lost); pass fit="contain" to letterbox.
  */
 export default function ProductImage({
   product,
@@ -14,7 +14,7 @@ export default function ProductImage({
   icon,
   label,
   ratio = '4 / 5',
-  fit = 'contain',
+  fit = 'cover',
   eager = false,
   iconSize = 52,
   className = '',
@@ -31,7 +31,7 @@ export default function ProductImage({
     return (
       <div className={`${s.ph} ${s[t] ?? s.lilac} ${className}`} style={{ aspectRatio: ratio, ...style }}>
         <img
-          className={`${s.img} ${fit === 'cover' ? s.cover : ''}`}
+          className={`${s.img} ${fit === 'contain' ? s.contain : ''}`}
           src={image}
           alt={alt ?? product?.name ?? ''}
           loading={eager ? 'eager' : 'lazy'}

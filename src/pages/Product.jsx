@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react'
 import { Link, Navigate, useParams } from 'react-router-dom'
 import Button from '@/components/ui/Button'
+import OrderButton from '@/components/ui/OrderButton'
 import Icon from '@/components/ui/Icon'
 import ProductImage from '@/components/ui/ProductImage'
 import SectionHeading from '@/components/ui/SectionHeading'
@@ -12,7 +13,7 @@ import { collectionBySlug } from '@/data/collections'
 import { products, productBySlug } from '@/data/products'
 import { useDocumentTitle } from '@/hooks/useDocumentTitle'
 import { useWishlist } from '@/hooks/useWishlist'
-import { buildOrderLink, formatInitials, formatPrice, orderLabel } from '@/utils/order'
+import { buildOrderMessage, formatInitials, formatPrice, orderChannel } from '@/utils/order'
 import s from './Product.module.scss'
 
 export default function Product() {
@@ -40,7 +41,6 @@ export default function Product() {
   const collection = product.collection ? collectionBySlug[product.collection] : null
   const category = categoryBySlug[product.category]
   const engraved = formatInitials(initials)
-  const orderHref = buildOrderLink({ product, finish, initials, size })
   const saved = has(product.slug)
 
   const sizeText = size === 'help' ? 'we will help you measure' : size ? `size ${size}` : isRing ? 'size not chosen yet' : null
@@ -166,9 +166,11 @@ export default function Product() {
             </div>
 
             <div className={s.ctas}>
-              <Button href={orderHref}>
-                <Icon name="chat" /> {orderLabel()}
-              </Button>
+              <OrderButton context={{ product, finish, initials, size }} />
+              <details className={s.msgPreview}>
+                <summary>Preview the message we will {orderChannel() === 'instagram' ? 'copy for you' : 'send'}</summary>
+                <pre>{buildOrderMessage({ product, finish, initials, size })}</pre>
+              </details>
               <Button variant="outline" onClick={() => toggle(product.slug)} aria-pressed={saved}>
                 <Icon name="heart" style={saved ? { fill: 'currentColor' } : undefined} /> {saved ? 'Saved to wishlist' : 'Save to wishlist'}
               </Button>

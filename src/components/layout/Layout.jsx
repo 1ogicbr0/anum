@@ -4,6 +4,7 @@ import Header from './Header'
 import Footer from './Footer'
 import ScrollToTop from './ScrollToTop'
 import RevealObserver from './RevealObserver'
+import Toaster from '@/components/ui/Toast'
 import s from './Layout.module.scss'
 
 export default function Layout() {
@@ -18,6 +19,7 @@ export default function Layout() {
         <Outlet />
       </main>
       <Footer />
+      <Toaster />
     </>
   )
 }

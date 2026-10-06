@@ -1,8 +1,6 @@
-import Button from '@/components/ui/Button'
-import Icon from '@/components/ui/Icon'
+import OrderButton from '@/components/ui/OrderButton'
 import { ringSizes, brand } from '@/data/brand'
 import { useDocumentTitle } from '@/hooks/useDocumentTitle'
-import { buildOrderLink, orderLabel } from '@/utils/order'
 import s from './RingSizeGuide.module.scss'
 
 export default function RingSizeGuide() {
@@ -55,9 +53,7 @@ export default function RingSizeGuide() {
             </tbody>
           </table>
           <p className={s.tip}>Sizes follow the standard US scale. [Confirm the sizes the client stocks.] {brand.delivery.headline}.</p>
-          <Button href={buildOrderLink()} variant="dark" style={{ marginTop: 16 }}>
-            <Icon name="chat" /> {orderLabel()}
-          </Button>
+          <OrderButton scenario="size-help" variant="dark" style={{ marginTop: 16 }}>Ask us to help with sizing</OrderButton>
         </div>
       </div>
     </div>
