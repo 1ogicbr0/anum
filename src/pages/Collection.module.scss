@@ -79,7 +79,8 @@
 
 .visual {
   flex: 1 1 360px;
-  min-height: 300px;
+  align-self: stretch;
+  max-height: 620px;
 }
 
 .grid {
@@ -108,7 +109,11 @@
 }
 
 .cardImg {
-  height: 220px;
+  width: 100%;
+}
+
+.card:hover :global(img) {
+  transform: scale(1.04);
 }
 
 .cardBody {

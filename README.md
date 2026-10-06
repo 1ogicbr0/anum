@@ -32,6 +32,18 @@ src/
 Styling: SCSS modules per component. Tokens and mixins are injected into every `.scss` file by
 `vite.config.js` (`additionalData`), so `$plum`, `@include mq(md)` etc. work without an `@use`.
 
+## Motion
+
+`src/styles/_motion.scss` + `RevealObserver`: add `data-reveal` to any element to fade it up when it
+scrolls into view, or `data-reveal="stagger"` to a container to reveal its children one by one
+(works for elements added later, such as filtered product grids). Pages fade in on route change,
+the hero has its own entrance, cards zoom their photo on hover, the wishlist heart pops, the header
+gains a shadow once scrolled, a brand marquee runs under the trust strip, and the ring preview
+carries a light sweep. All of it is disabled under `prefers-reduced-motion`.
+
+Photos are never cropped: `ProductImage` letterboxes them on the satin backdrop (default 4:5 box,
+`fit="cover"` opts back in to filling).
+
 ## Photography
 
 `public/images/instagram/` holds 25 post photos, the profile picture and a frame from the MUSE

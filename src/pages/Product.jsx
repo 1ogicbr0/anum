@@ -54,9 +54,9 @@ export default function Product() {
       </div>
 
       <section className={s.layout} aria-label={product.name}>
-        <div className={s.gallery}>
+        <div className={s.gallery} data-reveal>
           {hasImages ? (
-            <ProductImage src={images[Math.min(view, images.length - 1)]} alt={product.name} className={s.main} ratio="1 / 1.1" />
+            <ProductImage src={images[Math.min(view, images.length - 1)]} alt={product.name} className={s.main} ratio="4 / 5" eager />
           ) : (
             <ProductImage product={product} className={s.main} ratio={product.customizable ? 'auto' : '1 / 1'} iconSize={120} label={`[Photo — ${product.name}]`}>
               {product.customizable && (
@@ -91,7 +91,7 @@ export default function Product() {
           )}
         </div>
 
-        <div className={s.info}>
+        <div className={s.info} data-reveal>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
             <span className="eyebrow">
               {collection ? collection.name : category?.name} · {product.finishes.map((f) => finishes[f].label).join(' & ')}

@@ -8,7 +8,7 @@ export default function Categories() {
   return (
     <section className={s.wrap} id="categories" aria-label="Shop by category">
       <SectionHeading eyebrow="Shop by category" title="Find your Muse" linkTo="/shop" linkLabel="View all pieces" />
-      <div className={s.grid}>
+      <div className={s.grid} data-reveal="stagger">
         {categories.map((c) => (
           <Link key={c.slug} to={`/shop/${c.slug}`} className={s.tile}>
             <Icon name={c.icon} size={52} strokeWidth={1.1} />

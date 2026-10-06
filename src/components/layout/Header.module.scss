@@ -143,3 +143,20 @@
 .panelCta {
   margin-top: 16px;
 }
+
+.header {
+  transition: box-shadow 0.3s $ease, background 0.3s $ease;
+}
+
+.scrolled {
+  box-shadow: 0 8px 30px rgba($plum, 0.08);
+}
+
+.search,
+.panel {
+  animation: fade-up 0.3s $ease both;
+}
+
+.count {
+  animation: pop 0.4s $ease;
+}

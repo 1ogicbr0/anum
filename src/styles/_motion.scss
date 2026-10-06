@@ -1,0 +1,87 @@
+@use 'abstracts' as *;
+
+// Scroll reveals ------------------------------------------------------------
+// Add `data-reveal` to an element, or `data-reveal="stagger"` to a container whose
+// children should fade up one after another. RevealObserver adds `.is-in` when the
+// element scrolls into view. Animations (not transitions) are used so they never
+// fight hover transforms on the same element.
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+[data-reveal]:not(.is-in) {
+  opacity: 0;
+}
+
+[data-reveal]:not([data-reveal='stagger']).is-in {
+  animation: reveal 0.8s $ease backwards;
+}
+
+[data-reveal='stagger']:not(.is-in) > * {
+  opacity: 0;
+}
+
+[data-reveal='stagger'].is-in > * {
+  animation: reveal 0.8s $ease backwards;
+}
+
+@for $i from 1 through 16 {
+  [data-reveal='stagger'].is-in > *:nth-child(#{$i}) {
+    animation-delay: #{($i - 1) * 0.07}s;
+  }
+}
+
+// Shared keyframes -----------------------------------------------------------
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(1);
+  }
+
+  40% {
+    transform: scale(1.35);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal]:not(.is-in),
+  [data-reveal='stagger']:not(.is-in) > * {
+    opacity: 1;
+  }
+}

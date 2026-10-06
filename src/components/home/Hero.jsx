@@ -29,8 +29,8 @@ export default function Hero() {
       </div>
 
       <div className={s.visual}>
-        <ProductImage className={s.main} src={brand.images.hero} alt={brand.images.heroAlt} ratio="auto" />
-        <ProductImage className={s.small} src={brand.images.heroSmall} alt="Six Lilac Éclat rings on a lilac pedestal" ratio="auto" />
+        <ProductImage className={s.main} src={brand.images.hero} alt={brand.images.heroAlt} ratio="4 / 5" eager />
+        <ProductImage className={s.small} src={brand.images.heroSmall} alt="Six Lilac Éclat rings on a lilac pedestal" ratio="1 / 1" eager />
         <div className={s.card}>
           <span className="eyebrow">New in</span>
           <div>

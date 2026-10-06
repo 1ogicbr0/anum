@@ -44,7 +44,6 @@
 
 .main {
   border-radius: 28px;
-  min-height: 420px;
   position: relative;
 }
 
@@ -79,6 +78,11 @@
   border-radius: 14px;
   border: 2px solid transparent;
   height: 110px;
+  transition: border-color 0.2s $ease, transform 0.2s $ease;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
   padding: 0;
   background: none;
   overflow: hidden;

@@ -12,7 +12,7 @@ const year = new Date().getFullYear()
 export default function Footer() {
   return (
     <footer className={s.footer} id="about-footer">
-      <div className={s.grid}>
+      <div className={s.grid} data-reveal="stagger">
         <div className={s.brand}>
           <Wordmark to={null} size="lg" sub="BY ANUM · JEWELLERY" />
           <p className={s.blurb}>

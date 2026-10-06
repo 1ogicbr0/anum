@@ -5,7 +5,7 @@ import s from './TrustStrip.module.scss'
 export default function TrustStrip() {
   return (
     <section className={s.wrap} aria-label="Why Muse">
-      <div className={s.strip}>
+      <div className={s.strip} data-reveal="stagger">
         {brand.claims.map((c) => (
           <div className={s.item} key={c.title}>
             <span className={s.icon}>

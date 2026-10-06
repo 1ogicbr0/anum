@@ -24,7 +24,8 @@
 
 .featuredImg {
   flex: 1 1 380px;
-  min-height: 360px;
+  align-self: stretch;
+  max-height: 560px;
 }
 
 .featuredBody {
@@ -63,8 +64,13 @@
   color: $plum;
 }
 
+.card:hover :global(img),
+.featured:hover :global(img) {
+  transform: scale(1.04);
+}
+
 .cardImg {
-  height: 240px;
+  width: 100%;
 }
 
 .cardBody {

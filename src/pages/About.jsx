@@ -21,10 +21,10 @@ export default function About() {
             <Button href={brand.instagramUrl} variant="outline"><Icon name="instagram" /> @{brand.handle}</Button>
           </div>
         </div>
-        <ProductImage className={s.visual} src={brand.images.about} alt="A customer in lilac wearing Muse floral earrings and ring" ratio="auto" />
+        <ProductImage className={s.visual} src={brand.images.about} alt="A customer in lilac wearing Muse floral earrings and ring" ratio="4 / 5" eager />
       </section>
 
-      <section className={s.story} aria-label="Our story">
+      <section className={s.story} aria-label="Our story" data-reveal="stagger">
         <div>
           <h2 className={s.storyTitle}>The First Muse</h2>
           <p className={s.storyText}>
@@ -45,7 +45,7 @@ export default function About() {
         </div>
       </section>
 
-      <section className={s.values} aria-label="What we promise">
+      <section className={s.values} aria-label="What we promise" data-reveal="stagger">
         {brand.claims.map((c) => (
           <div className={s.value} key={c.title}>
             <Icon name={c.icon} size={28} />
@@ -55,7 +55,7 @@ export default function About() {
         ))}
       </section>
 
-      <section className={s.policy} aria-label="Delivery and care">
+      <section className={s.policy} aria-label="Delivery and care" data-reveal="stagger">
         <div className={s.policyCard} id="delivery">
           <h2 className={s.policyTitle}>Delivery across Pakistan</h2>
           <p className={s.policyText}>

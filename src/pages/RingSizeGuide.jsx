@@ -15,7 +15,7 @@ export default function RingSizeGuide() {
         <p className={s.lead}>Measure at home in two minutes. If you are between sizes, go up, and if you are still unsure, send us a photo of a ring you already wear on a ruler and we will size it for you.</p>
       </div>
 
-      <div className={s.cols}>
+      <div className={s.cols} data-reveal="stagger">
         <ol className={s.steps}>
           <li className={s.step}>
             <div>

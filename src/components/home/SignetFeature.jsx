@@ -8,7 +8,7 @@ export default function SignetFeature() {
   const ring = productBySlug['customizable-signet-ring']
   return (
     <section className={s.wrap} id="customise" aria-label="Customizable signet ring">
-      <div className={s.band}>
+      <div className={s.band} data-reveal>
         <div className={s.visual}>
           <RingPreview id="home-ring" />
         </div>

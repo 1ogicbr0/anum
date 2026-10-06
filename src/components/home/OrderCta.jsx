@@ -8,7 +8,7 @@ export default function OrderCta() {
   const hasWhatsApp = Boolean(brand.whatsappNumber)
   return (
     <section className={s.wrap} id="order" aria-label="How to order">
-      <div className={s.band}>
+      <div className={s.band} data-reveal>
         <div className={s.copy}>
           <span className={s.eyebrow}>Ready when you are</span>
           <h2 className={s.title}>{brand.lines.firstMuse}</h2>

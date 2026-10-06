@@ -3,15 +3,29 @@
   padding-bottom: $section-y;
 }
 
-.grid {
+.layout {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: 1fr;
   gap: 20px;
+
+  @include mq(lg) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.grid {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  > * {
+    flex: 1;
+  }
 }
 
 .card {
   @include card;
-  min-height: 340px;
+  min-height: 260px;
   padding: 36px;
   display: flex;
   flex-direction: column;
@@ -66,6 +80,5 @@
 
 .banner {
   border-radius: 28px;
-  height: clamp(320px, 44vw, 600px);
-  margin-bottom: 20px;
+  width: 100%;
 }

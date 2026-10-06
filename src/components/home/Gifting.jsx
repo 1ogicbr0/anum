@@ -13,28 +13,28 @@ export default function Gifting() {
     <section className={s.section} id="gifting" aria-label="Gifting">
       <div className={s.inner}>
         <SectionHeading eyebrow="Gifting" title={brand.lines.gifting} />
-        <div className={s.chips} style={{ marginBottom: 28 }}>
+        <div className={s.chips} style={{ marginBottom: 28 }} data-reveal>
           {chips.map((c) => (
             <Link key={c} to="/shop?occasion=gifting" className="chip">{c}</Link>
           ))}
         </div>
-        <div className={s.grid}>
+        <div className={s.grid} data-reveal="stagger">
           <div className={s.card}>
-            <ProductImage className={s.img} src={brand.images.giftBox} alt="The white MUSE by Anum gift box" ratio="auto" imgStyle={{ objectPosition: 'center 22%' }} />
+            <ProductImage className={s.img} src={brand.images.giftBox} alt="The white MUSE by Anum gift box" ratio="4 / 5" />
             <div className={s.body}>
               <h3 className={s.title}>The Muse gift box</h3>
               <p className={s.text}>Every order arrives in our white box with purple lettering, ready to hand over.</p>
             </div>
           </div>
           <div className={s.card}>
-            <ProductImage className={s.img} src={brand.images.charm} alt="MUSE Charm on a white gift bag" tone="lilac" icon="sparkle" ratio="auto" label="[Photo — MUSE Charm on ribbon]" />
+            <ProductImage className={s.img} src={brand.images.charm} alt="MUSE Charm on a white gift bag" tone="lilac" icon="sparkle" ratio="4 / 5" label="[Photo — MUSE Charm on ribbon]" />
             <div className={s.body}>
               <h3 className={s.title}>Add a {charm.name}</h3>
               <p className={s.text}>{charm.description}</p>
             </div>
           </div>
           <Link to="/product/customizable-signet-ring" className={s.card}>
-            <ProductImage className={s.img} src={brand.images.engraved} alt="Two friends wearing matching engraved signet rings" ratio="auto" imgStyle={{ objectPosition: 'center 65%' }} />
+            <ProductImage className={s.img} src={brand.images.engraved} alt="Two friends wearing matching engraved signet rings" ratio="4 / 5" />
             <div className={s.body}>
               <h3 className={s.title}>Engrave their initials</h3>
               <p className={s.text}>Some friendships deserve to be worn close, every single day. Personalise a signet ring for you two.</p>

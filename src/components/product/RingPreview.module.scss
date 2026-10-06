@@ -7,4 +7,5 @@
 .text {
   font-family: $font-display;
   font-style: italic;
+  animation: fade-up 0.45s $ease both;
 }

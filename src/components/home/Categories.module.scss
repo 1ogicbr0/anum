@@ -25,10 +25,15 @@
 
   svg {
     color: $gold-deep;
+    transition: transform 0.35s $ease;
   }
 
   &:hover {
     transform: translateY(-3px);
     color: $purple;
+
+    svg {
+      transform: translateY(-4px) scale(1.08);
+    }
   }
 }

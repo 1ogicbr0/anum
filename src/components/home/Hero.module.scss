@@ -82,21 +82,16 @@
 .main {
   grid-column: 1 / -1;
   border-radius: 28px;
-  height: 430px;
-
-  @include mq-down(sm) {
-    height: 320px;
-  }
+  max-height: 640px;
 }
 
 .small {
   border-radius: 22px;
-  height: 220px;
 }
 
 .card {
   border-radius: 22px;
-  height: 220px;
+  min-height: 220px;
   background: $white;
   padding: 24px;
   display: flex;
@@ -121,4 +116,55 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
+}
+
+// Entrance -------------------------------------------------------------------
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes rise-scale {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.copy > * {
+  animation: rise 0.8s $ease both;
+}
+
+@for $i from 1 through 6 {
+  .copy > *:nth-child(#{$i}) {
+    animation-delay: #{0.05 + ($i - 1) * 0.09}s;
+  }
+}
+
+.visual > * {
+  animation: rise-scale 0.9s $ease both;
+}
+
+.visual > *:nth-child(1) {
+  animation-delay: 0.2s;
+}
+
+.visual > *:nth-child(2) {
+  animation-delay: 0.4s;
+}
+
+.visual > *:nth-child(3) {
+  animation-delay: 0.5s;
 }

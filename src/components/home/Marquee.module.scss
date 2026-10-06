@@ -1,0 +1,43 @@
+.band {
+  background: $lilac-200;
+  overflow: hidden;
+  padding: 18px 0;
+  border-top: 1px solid rgba($plum, 0.06);
+  border-bottom: 1px solid rgba($plum, 0.06);
+}
+
+.track {
+  display: flex;
+  width: max-content;
+  animation: marquee 48s linear infinite;
+
+  .band:hover & {
+    animation-play-state: paused;
+  }
+}
+
+.item {
+  display: inline-flex;
+  align-items: center;
+  gap: 28px;
+  padding-right: 28px;
+  font-family: $font-display;
+  font-style: italic;
+  font-size: 24px;
+  color: $plum;
+  white-space: nowrap;
+
+  svg {
+    color: $gold-deep;
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}

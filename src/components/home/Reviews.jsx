@@ -7,7 +7,7 @@ export default function Reviews() {
   return (
     <section className={s.wrap} id="reviews" aria-label="Reviews">
       <SectionHeading center eyebrow="Muse Reviews" title="Loved by the women who wear it." />
-      <div className={s.grid}>
+      <div className={s.grid} data-reveal="stagger">
         {reviews.map((r, i) => (
           <figure className={s.card} key={i}>
             <div className={s.stars} aria-label="Five stars">

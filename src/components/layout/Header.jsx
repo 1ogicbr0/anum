@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import Icon from '@/components/ui/Icon'
 import Wordmark from '@/components/ui/Wordmark'
@@ -22,6 +22,14 @@ export default function Header() {
   const [q, setQ] = useState('')
   const navigate = useNavigate()
   const { count } = useWishlist()
+  const [scrolled, setScrolled] = useState(false)
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8)
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
 
   const submit = (e) => {
     e.preventDefault()
@@ -32,7 +40,7 @@ export default function Header() {
   }
 
   return (
-    <header className={s.header}>
+    <header className={`${s.header} ${scrolled ? s.scrolled : ''}`}>
       <div className={s.inner}>
         <Wordmark />
 

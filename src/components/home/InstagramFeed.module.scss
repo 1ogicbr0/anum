@@ -31,8 +31,11 @@
 }
 
 .img {
-  min-height: 160px;
   border-radius: 14px;
+}
+
+.tile:hover :global(img) {
+  transform: scale(1.05);
 }
 
 .caption {

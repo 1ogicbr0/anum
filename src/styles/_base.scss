@@ -89,6 +89,7 @@ h3 {
     &:hover {
       background: $purple-dark;
       color: $white;
+      box-shadow: 0 10px 24px rgba($purple, 0.28);
     }
   }
 

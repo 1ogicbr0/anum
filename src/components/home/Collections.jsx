@@ -25,9 +25,9 @@ export default function Collections() {
           title={brand.lines.poetry}
           aside="Five edits, one mood: timeless gold, a little sparkle and the dreamy lilac that is unmistakably Muse."
         />
-        <div className={s.grid}>
+        <div className={s.grid} data-reveal="stagger">
           <Link to={`/collections/${featured.slug}`} className={s.featured}>
-            <ProductImage className={s.featuredImg} src={featured.image} alt={featured.name} ratio="auto" />
+            <ProductImage className={s.featuredImg} src={featured.image} alt={featured.name} ratio="1 / 1" />
             <div className={s.featuredBody}>
               <span className="eyebrow">Featured collection</span>
               <h3 className={s.featuredTitle}>{featured.name}</h3>
@@ -40,7 +40,7 @@ export default function Collections() {
 
           {rest.map((c) => (
             <Link key={c.slug} to={`/collections/${c.slug}`} className={s.card}>
-              <ProductImage className={s.cardImg} src={c.image} alt={c.name} tone={c.tone} icon={c.icon} ratio="auto" label={`[Photo — ${c.name}]`} />
+              <ProductImage className={s.cardImg} src={c.image} alt={c.name} tone={c.tone} icon={c.icon} ratio="4 / 5" label={`[Photo — ${c.name}]`} />
               <div className={s.cardBody}>
                 <h3 className={s.cardTitle}>{c.name}</h3>
                 <span className={s.cardSub}>{subtitles[c.slug] ?? c.tagline}</span>

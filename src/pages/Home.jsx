@@ -1,5 +1,6 @@
 import Hero from '@/components/home/Hero'
 import TrustStrip from '@/components/home/TrustStrip'
+import Marquee from '@/components/home/Marquee'
 import Categories from '@/components/home/Categories'
 import Collections from '@/components/home/Collections'
 import SignetFeature from '@/components/home/SignetFeature'
@@ -16,6 +17,7 @@ export default function Home() {
     <>
       <Hero />
       <TrustStrip />
+      <Marquee />
       <Categories />
       <Collections />
       <SignetFeature />

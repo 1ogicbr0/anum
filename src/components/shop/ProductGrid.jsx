@@ -12,7 +12,7 @@ export default function ProductGrid({ products, emptyText = 'No pieces match tho
     )
   }
   return (
-    <div className={s.grid}>
+    <div className={s.grid} data-reveal="stagger">
       {products.map((p) => (
         <ProductCard key={p.slug} product={p} />
       ))}
