@@ -323,32 +323,45 @@
   }
 }
 
-.clipWrap {
+.mainClip {
+  border-radius: 28px;
+}
+
+.videoThumb {
+  position: relative;
+  @include satin-deep;
+
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.thumbPlay {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba($white, 0.92);
+  color: $plum;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 150px;
-  gap: 16px;
-  align-items: center;
-  background: $lilac-100;
-  border-radius: 20px;
-  padding: 14px 14px 14px 20px;
+  place-items: center;
 }
 
-.clipHead {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.clipTitle {
-  @include display(26px);
-  line-height: 1.1;
-}
-
-.clipNote {
-  font-size: 13px;
-  color: $muted;
-}
-
-.clip {
-  width: 150px;
+.thumbTag {
+  position: absolute;
+  left: 8px;
+  bottom: 8px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: rgba($white, 0.9);
+  color: $plum;
 }

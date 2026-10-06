@@ -7,14 +7,19 @@ import s from './HighlightClip.module.scss'
  * A story clip saved from one of @musebyanum's Instagram highlights, served from
  * /public/videos/highlights. Tap to play (with sound), tap again to pause. Only one
  * clip plays at a time; the poster frame shows until then so nothing downloads early.
- * Most stories are a photo with a music track (clip.motion is false): they are labelled
- * "Photo + music", get a slow zoom and an equaliser while playing so the sound is
- * visibly the point. Real footage is labelled "Video".
+ * While playing, the badge in the corner counts down the seconds left and a story-style
+ * progress bar fills along the top. Most stories are a photo with a music track
+ * (clip.motion is false): those are labelled "Photo + music" and the photo itself is
+ * animated (slow zoom and pan, a passing shine) while the music plays. Real footage is
+ * labelled "Video". `ratio` and `fit` let a page show a story inside a different frame
+ * (the product page uses a 4:5 frame with the story letterboxed on satin).
  */
-export default function HighlightClip({ clip, compact = false, className = '' }) {
+export default function HighlightClip({ clip, compact = false, ratio = '9 / 16', fit = 'cover', className = '' }) {
   const ref = useRef(null)
   const [playing, setPlaying] = useState(false)
   const [muted, setMuted] = useState(false)
+  const [remaining, setRemaining] = useState(null)
+  const [progress, setProgress] = useState(0)
   const cat = videoCategoryBySlug[clip.category]
   const highlight = highlightBySlug[clip.highlight]
   const isPhoto = !clip.motion
@@ -40,9 +45,19 @@ export default function HighlightClip({ clip, compact = false, className = '' })
     }
   }
 
+  const onTime = () => {
+    const el = ref.current
+    if (!el) return
+    const total = Number.isFinite(el.duration) && el.duration > 0 ? el.duration : clip.duration
+    setRemaining(Math.max(0, Math.ceil(total - el.currentTime)))
+    setProgress(Math.min(1, el.currentTime / total))
+  }
+
+  const seconds = remaining ?? clip.duration
+
   return (
     <article className={`${s.card} ${compact ? s.compact : ''} ${className}`}>
-      <div className={`${s.frame} ${playing ? s.playing : ''} ${isPhoto ? s.photo : ''}`}>
+      <div className={`${s.frame} ${playing ? s.playing : ''} ${isPhoto ? s.photo : ''} ${fit === 'contain' ? s.contain : ''}`} style={{ aspectRatio: ratio }}>
         <video
           ref={ref}
           src={clip.src}
@@ -53,19 +68,23 @@ export default function HighlightClip({ clip, compact = false, className = '' })
           muted={muted}
           onPlay={() => setPlaying(true)}
           onPause={() => setPlaying(false)}
+          onTimeUpdate={onTime}
           onClick={toggle}
           aria-label={clip.title}
         />
+        <span className={s.progress} aria-hidden="true">
+          <i style={{ width: `${progress * 100}%` }} />
+        </span>
         <button type="button" className={s.play} aria-label={playing ? `Pause: ${clip.title}` : `Play: ${clip.title}`} onClick={toggle}>
           <Icon name={playing ? 'pause' : 'play'} size={24} />
         </button>
         <span className={s.kind}>{isPhoto ? 'Photo + music' : 'Video'}</span>
-        <span className={s.dur}>{clip.duration}s</span>
-        {playing && isPhoto && (
-          <span className={s.eq} aria-hidden="true"><i /><i /><i /></span>
-        )}
+        <span className={s.dur} aria-live={playing ? 'off' : undefined}>{seconds}s</span>
         {playing && (
           <button type="button" className={s.sound} aria-label={muted ? 'Unmute' : 'Mute'} aria-pressed={muted} onClick={() => setMuted((m) => !m)}>
+            {!muted && (
+              <span className={s.eq} aria-hidden="true"><i /><i /><i /></span>
+            )}
             {muted ? 'Muted' : 'Sound on'}
           </button>
         )}

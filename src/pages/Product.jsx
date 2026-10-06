@@ -45,6 +45,9 @@ export default function Product() {
   const engraved = formatInitials(initials)
   const saved = has(product.slug)
   const clip = product.video ? clipBySlug[product.video] : null
+  // Gallery order: the highlight story first (video before photos), then every photo.
+  const media = [...(clip ? [{ type: 'video', clip }] : []), ...images.map((src) => ({ type: 'image', src }))]
+  const current = media[Math.min(view, media.length - 1)]
 
   const sizeText = size === 'help' ? 'we will help you measure' : size ? `size ${size}` : isRing ? 'size not chosen yet' : null
 
@@ -58,8 +61,10 @@ export default function Product() {
 
       <section className={s.layout} aria-label={product.name}>
         <div className={s.gallery} data-reveal>
-          {hasImages ? (
-            <ProductImage src={images[Math.min(view, images.length - 1)]} alt={product.name} className={s.main} ratio="4 / 5" eager />
+          {current?.type === 'video' ? (
+            <HighlightClip clip={current.clip} compact ratio="4 / 5" fit="contain" className={s.mainClip} />
+          ) : hasImages ? (
+            <ProductImage src={current.src} alt={product.name} className={s.main} ratio="4 / 5" eager />
           ) : (
             <ProductImage product={product} className={s.main} ratio={product.customizable ? 'auto' : '1 / 1'} iconSize={120} label={`[Photo — ${product.name}]`}>
               {product.customizable && (
@@ -72,22 +77,28 @@ export default function Product() {
               )}
             </ProductImage>
           )}
-          {images.length > 1 && (
+          {media.length > 1 && (
             <div className={s.thumbs}>
-              {images.map((img, i) => (
-                <button key={img} type="button" className={`${s.thumb} ${i === view ? s.on : ''}`} aria-label={`View photo ${i + 1}`} aria-pressed={i === view} onClick={() => setView(i)}>
-                  <ProductImage src={img} alt="" ratio="auto" />
+              {media.map((m, i) => (
+                <button
+                  key={m.type === 'video' ? `video-${m.clip.slug}` : m.src}
+                  type="button"
+                  className={`${s.thumb} ${i === view ? s.on : ''} ${m.type === 'video' ? s.videoThumb : ''}`}
+                  aria-label={m.type === 'video' ? `Watch the ${m.clip.highlight} highlight story` : `View photo ${i + (clip ? 0 : 1)}`}
+                  aria-pressed={i === view}
+                  onClick={() => setView(i)}
+                >
+                  {m.type === 'video' ? (
+                    <>
+                      <img src={m.clip.poster} alt="" loading="lazy" decoding="async" />
+                      <span className={s.thumbPlay}><Icon name="play" size={16} /></span>
+                      <span className={s.thumbTag}>{m.clip.motion ? 'Video' : 'Story'}</span>
+                    </>
+                  ) : (
+                    <ProductImage src={m.src} alt="" ratio="auto" />
+                  )}
                 </button>
               ))}
-            </div>
-          )}
-          {clip && (
-            <div className={s.clipWrap}>
-              <div className={s.clipHead}>
-                <span className={s.clipTitle}>See it in motion</span>
-                <span className={s.clipNote}>From the {clip.highlight} highlight on Instagram</span>
-              </div>
-              <HighlightClip clip={clip} compact className={s.clip} />
             </div>
           )}
           {hasImages && product.customizable && (

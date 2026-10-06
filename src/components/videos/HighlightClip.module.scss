@@ -16,6 +16,11 @@
   width: 100%;
   cursor: pointer;
 
+  &.contain video {
+    object-fit: contain;
+    background: transparent;
+  }
+
   video {
     position: absolute;
     inset: 0;
@@ -157,42 +162,47 @@
   color: $white;
 }
 
-// Photo stories: a slow drift while the music plays, so the still image reads as "playing".
-.photo.playing video {
-  animation: clip-drift 14s ease-in-out infinite alternate;
-}
-
-@keyframes clip-drift {
-  from {
-    transform: scale(1) translate(0, 0);
-  }
-  to {
-    transform: scale(1.08) translate(-1.5%, 1.5%);
-  }
-}
-
-.eq {
+// Story-style progress bar along the top edge.
+.progress {
   position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  display: flex;
-  align-items: flex-end;
-  gap: 4px;
-  height: 26px;
-  padding: 10px 12px;
-  border-radius: 999px;
-  background: rgba($plum, 0.45);
-  backdrop-filter: blur(8px);
-  box-sizing: content-box;
+  left: 10px;
+  right: 10px;
+  top: 6px;
+  height: 3px;
+  border-radius: 3px;
+  background: rgba($white, 0.35);
+  overflow: hidden;
   pointer-events: none;
 
   i {
     display: block;
-    width: 4px;
+    height: 100%;
+    width: 0;
+    background: $white;
+    border-radius: 3px;
+    transition: width 0.25s linear;
+  }
+}
+
+.sound {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+
+// Tiny equaliser inside the sound toggle, so the audio is visibly the point.
+.eq {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 11px;
+
+  i {
+    display: block;
+    width: 2.5px;
     height: 100%;
     border-radius: 2px;
-    background: $white;
+    background: $purple;
     transform-origin: bottom;
     animation: clip-eq 0.9s ease-in-out infinite;
 
@@ -216,8 +226,50 @@
   }
 }
 
+// Photo stories: the picture itself moves while the music plays — a slow zoom that pans
+// across the frame, plus a soft shine passing over it every few seconds.
+.photo.playing video {
+  animation: clip-kenburns 16s ease-in-out infinite;
+}
+
+.photo.playing::before {
+  content: '';
+  position: absolute;
+  inset: -40% -60%;
+  background: linear-gradient(115deg, rgba($white, 0) 42%, rgba($white, 0.22) 50%, rgba($white, 0) 58%);
+  animation: clip-shine 5.5s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes clip-kenburns {
+  0% {
+    transform: scale(1) translate(0, 0);
+  }
+  35% {
+    transform: scale(1.14) translate(-2.5%, 2%);
+  }
+  70% {
+    transform: scale(1.1) translate(2%, -2.5%);
+  }
+  100% {
+    transform: scale(1) translate(0, 0);
+  }
+}
+
+@keyframes clip-shine {
+  0%,
+  55% {
+    transform: translateX(-70%);
+  }
+  100% {
+    transform: translateX(70%);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .photo.playing video,
+  .photo.playing::before,
   .eq i {
     animation: none;
   }
