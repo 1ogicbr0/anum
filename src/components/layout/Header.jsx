@@ -89,20 +89,19 @@ export default function Header() {
         </form>
       )}
 
-      {open && (
-        <div className={s.panel}>
-          <div className={s.panelInner}>
-            {links.map((l) => (
-              <NavLink key={l.to} to={l.to} className={s.panelLink} onClick={() => setOpen(false)}>
-                {l.label} <Icon name="arrow" size={18} />
-              </NavLink>
-            ))}
-            <OrderButton variant="primary" block className={s.panelCta}>
-              {orderLabel()}
-            </OrderButton>
-          </div>
+      {/* Always mounted so it can slide open and closed; inert while closed. */}
+      <div className={`${s.panel} ${open ? s.open : ''}`} aria-hidden={!open} inert={!open}>
+        <div className={s.panelInner}>
+          {links.map((l) => (
+            <NavLink key={l.to} to={l.to} className={s.panelLink} onClick={() => setOpen(false)} tabIndex={open ? undefined : -1}>
+              {l.label} <Icon name="arrow" size={18} />
+            </NavLink>
+          ))}
+          <OrderButton variant="primary" block className={s.panelCta}>
+            {orderLabel()}
+          </OrderButton>
         </div>
-      )}
+      </div>
     </header>
   )
 }
