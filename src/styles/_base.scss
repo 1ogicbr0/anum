@@ -145,7 +145,7 @@ h3 {
     width: 100%;
   }
 
-  // Instagram order buttons (any variant): the Instagram gradient fades in on hover.
+  // Instagram order buttons (any variant): Instagram's pink fades in on hover.
   &--instagram {
     position: relative;
     isolation: isolate;
@@ -156,7 +156,7 @@ h3 {
       position: absolute;
       inset: -1.5px;
       border-radius: inherit;
-      background: linear-gradient(45deg, #f9ce34 0%, #ee2a7b 50%, #6228d7 100%);
+      background: #ee2a7b; // Instagram's middle pink, flat
       opacity: 0;
       transition: opacity $dur $ease;
       z-index: -1;
