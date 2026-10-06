@@ -31,18 +31,6 @@
     background: $plum;
   }
 
-  &::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to top, rgba($plum, 0.55), rgba($plum, 0) 45%);
-    pointer-events: none;
-    transition: opacity 0.4s $ease;
-  }
-
-  &.playing::after {
-    opacity: 0;
-  }
 }
 
 .play {
@@ -111,6 +99,11 @@
   color: $plum;
   border: 0;
   cursor: pointer;
+
+  // Phones play with sound by default and have no room for the toggle.
+  @include mq-down(md) {
+    display: none;
+  }
 }
 
 .body {
