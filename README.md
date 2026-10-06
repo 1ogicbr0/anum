@@ -92,6 +92,13 @@ text on dark). `ThemeToggle` in the header flips `data-theme` on `<html>` and st
 localStorage (`muse-theme`); a small inline script in `index.html` applies the saved or system
 preference before first paint so there is no flash.
 
+## Welcome screen
+
+`Preloader` (in `Layout`) covers the first paint with a plum curtain for about four seconds: the
+wordmark rises letter by letter, "BY ANUM" settles, a gold line draws, the tagline appears, then the
+curtain lifts. It sets `data-loading` on `<html>` and fires `muse:ready` when it is gone, which the
+hero animation waits for. Visitors with reduced motion never see it.
+
 ## Motion
 
 `src/styles/_motion.scss` + `RevealObserver`: add `data-reveal` to any element to fade it up when it

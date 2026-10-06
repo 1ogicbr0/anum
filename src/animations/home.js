@@ -78,7 +78,11 @@ export function hero(el) {
   const small = one(el, '[data-anim=small]')
   const card = one(el, '[data-anim=card]')
   const visual = one(el, '[data-anim=visual]')
-  const tl = gsap.timeline({ defaults: { ease: 'power4.out' } })
+  // If the welcome screen is up, hold the entrance until it lifts.
+  const waiting = document.documentElement.dataset.loading === '1'
+  const tl = gsap.timeline({ defaults: { ease: 'power4.out' }, paused: waiting })
+  const onReady = () => tl.play()
+  if (waiting) window.addEventListener('muse:ready', onReady, { once: true })
   tl.from(one(el, '[data-anim=eyebrow]'), { opacity: 0, letterSpacing: '0.5em', duration: 1 }, 0)
     .add(textRise(one(el, '[data-anim=title]')), 0.1)
     .from(one(el, '[data-anim=sub]'), { y: 24, opacity: 0, duration: 0.8 }, 0.6)
@@ -120,6 +124,7 @@ export function hero(el) {
     el.removeEventListener('pointermove', move)
     el.removeEventListener('pointerleave', leave)
     window.removeEventListener('scroll', onScroll)
+    window.removeEventListener('muse:ready', onReady)
   }
 }
 

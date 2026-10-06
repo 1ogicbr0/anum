@@ -1,0 +1,66 @@
+.loader {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: $plum;
+  color: $white;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+
+  // a faint lilac bloom behind the mark
+  &::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: min(70vw, 560px);
+    aspect-ratio: 1;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba($lilac-500, 0.28) 0%, rgba($purple, 0.12) 40%, rgba($purple, 0) 70%);
+    filter: blur(20px);
+    pointer-events: none;
+  }
+}
+
+.inner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+}
+
+.word {
+  @include wordmark(clamp(64px, 12vw, 120px));
+  display: block;
+  overflow: hidden; // the letters rise out of this box
+  padding-bottom: 0.08em;
+}
+
+.sub {
+  font-size: clamp(11px, 1.4vw, 14px);
+  font-weight: 700;
+  letter-spacing: 0.42em;
+  color: $on-plum;
+  margin-top: -2px;
+}
+
+.line {
+  display: block;
+  width: min(42vw, 220px);
+  height: 1.5px;
+  margin-top: 18px;
+  background: linear-gradient(90deg, rgba($gold-light, 0) 0%, $gold-light 20%, $gold-light 80%, rgba($gold-light, 0) 100%);
+}
+
+.tag {
+  margin-top: 14px;
+  font-family: $font-display;
+  font-style: italic;
+  font-size: clamp(16px, 2vw, 20px);
+  color: $on-plum;
+}
+
