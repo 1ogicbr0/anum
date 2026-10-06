@@ -4,6 +4,7 @@ import Header from './Header'
 import Footer from './Footer'
 import ScrollToTop from './ScrollToTop'
 import RevealObserver from './RevealObserver'
+import CursorGlow from './CursorGlow'
 import Toaster from '@/components/ui/Toast'
 import s from './Layout.module.scss'
 
@@ -13,6 +14,7 @@ export default function Layout() {
     <>
       <ScrollToTop />
       <RevealObserver />
+      <CursorGlow />
       <AnnouncementBar />
       <Header />
       <main key={pathname} className={s.page}>

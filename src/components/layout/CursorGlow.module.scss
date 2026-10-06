@@ -1,0 +1,19 @@
+.glow {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 360px;
+  height: 360px;
+  margin: -180px 0 0 -180px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0;
+  background: radial-gradient(circle, rgba($lilac-500, 0.42) 0%, rgba($purple, 0.2) 30%, rgba($purple, 0) 68%);
+  filter: blur(18px);
+  will-change: transform, opacity;
+
+  @media (hover: none), (pointer: coarse) {
+    display: none;
+  }
+}
