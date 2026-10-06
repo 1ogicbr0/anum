@@ -1,6 +1,7 @@
 import { Link, useSearchParams } from 'react-router-dom'
+import HighlightClip from '@/components/videos/HighlightClip'
 import ReelEmbed from '@/components/videos/ReelEmbed'
-import { videos, videoCategories } from '@/data/videos'
+import { clips, highlights, videos, videoCategories } from '@/data/videos'
 import { brand } from '@/data/brand'
 import { useDocumentTitle } from '@/hooks/useDocumentTitle'
 import s from './Videos.module.scss'
@@ -9,8 +10,9 @@ export default function Videos() {
   useDocumentTitle('Videos')
   const [params, setParams] = useSearchParams()
   const active = params.get('category') ?? ''
-  const list = active ? videos.filter((v) => v.category === active) : videos
-  const used = new Set(videos.map((v) => v.category))
+  const clipList = active ? clips.filter((c) => c.category === active) : clips
+  const reelList = active ? videos.filter((v) => v.category === active) : videos
+  const used = new Set([...clips.map((c) => c.category), ...videos.map((v) => v.category)])
 
   const pick = (slug) => {
     const p = new URLSearchParams(params)
@@ -25,7 +27,7 @@ export default function Videos() {
         <div className="eyebrow">Watch</div>
         <h1 className={s.title}>Muse in motion.</h1>
         <p className={s.lead}>
-          Reels from <Link to="/#instagram">@{brand.handle}</Link>, grouped the way the Instagram highlights are. Tap any video to play it, or open it on Instagram.
+          Every story from the nine <Link to="/#instagram">@{brand.handle}</Link> highlights, plus the public reels, grouped the way the highlights are. Tap a clip to play it with sound.
         </p>
       </div>
 
@@ -38,15 +40,37 @@ export default function Videos() {
         ))}
       </div>
 
-      {list.length ? (
-        <div className={s.grid} data-reveal="stagger">
-          {list.map((v) => (
-            <ReelEmbed key={v.code} video={v} />
-          ))}
-        </div>
-      ) : (
-        <div className={s.empty}>No videos in this category yet.</div>
+      {clipList.length > 0 && (
+        <section className={s.group} aria-label="Highlight stories">
+          <div className={s.groupHead}>
+            <h2 className={s.groupTitle}>From the highlights</h2>
+            <span className={s.groupNote}>
+              {clipList.length} {clipList.length === 1 ? 'story' : 'stories'} · saved from {active ? 'this highlight' : `${highlights.length} highlights`}
+            </span>
+          </div>
+          <div className={s.grid} data-reveal="stagger">
+            {clipList.map((c) => (
+              <HighlightClip key={c.slug} clip={c} />
+            ))}
+          </div>
+        </section>
       )}
+
+      {reelList.length > 0 && (
+        <section className={s.group} aria-label="Reels">
+          <div className={s.groupHead}>
+            <h2 className={s.groupTitle}>Reels</h2>
+            <span className={s.groupNote}>Played through Instagram, so they stay on @{brand.handle}</span>
+          </div>
+          <div className={s.grid} data-reveal="stagger">
+            {reelList.map((v) => (
+              <ReelEmbed key={v.code} video={v} />
+            ))}
+          </div>
+        </section>
+      )}
+
+      {!clipList.length && !reelList.length && <div className={s.empty}>No videos in this category yet.</div>}
     </div>
   )
 }

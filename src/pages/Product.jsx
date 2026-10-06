@@ -7,10 +7,12 @@ import ProductImage from '@/components/ui/ProductImage'
 import SectionHeading from '@/components/ui/SectionHeading'
 import RingPreview from '@/components/product/RingPreview'
 import ProductGrid from '@/components/shop/ProductGrid'
+import HighlightClip from '@/components/videos/HighlightClip'
 import { brand, finishes, ringSizes } from '@/data/brand'
 import { categoryBySlug } from '@/data/categories'
 import { collectionBySlug } from '@/data/collections'
 import { products, productBySlug } from '@/data/products'
+import { clipBySlug } from '@/data/videos'
 import { useDocumentTitle } from '@/hooks/useDocumentTitle'
 import { useWishlist } from '@/hooks/useWishlist'
 import { buildOrderMessage, formatInitials, formatPrice, orderChannel } from '@/utils/order'
@@ -42,6 +44,7 @@ export default function Product() {
   const category = categoryBySlug[product.category]
   const engraved = formatInitials(initials)
   const saved = has(product.slug)
+  const clip = product.video ? clipBySlug[product.video] : null
 
   const sizeText = size === 'help' ? 'we will help you measure' : size ? `size ${size}` : isRing ? 'size not chosen yet' : null
 
@@ -76,6 +79,15 @@ export default function Product() {
                   <ProductImage src={img} alt="" ratio="auto" />
                 </button>
               ))}
+            </div>
+          )}
+          {clip && (
+            <div className={s.clipWrap}>
+              <div className={s.clipHead}>
+                <span className={s.clipTitle}>See it in motion</span>
+                <span className={s.clipNote}>From the {clip.highlight} highlight on Instagram</span>
+              </div>
+              <HighlightClip clip={clip} compact className={s.clip} />
             </div>
           )}
           {hasImages && product.customizable && (

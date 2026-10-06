@@ -32,6 +32,24 @@ src/
 Styling: SCSS modules per component. Tokens and mixins are injected into every `.scss` file by
 `vite.config.js` (`additionalData`), so `$plum`, `@include mq(md)` etc. work without an `@use`.
 
+
+## Highlight videos and carousel photos (added 7 Oct 2026)
+
+- **Story clips** — every story in the nine Instagram highlights (23 videos, 4 photos) was saved while
+  logged in to Instagram and lives in `public/videos/highlights` (mp4 + poster jpg) and
+  `public/images/stories`. They are listed in `src/data/videos.js` (`clips`, `storyImages`,
+  `highlights`) and played by `src/components/videos/HighlightClip.jsx`: tap to play with sound,
+  one clip at a time, nothing downloads until tapped. They appear on the home page strip, the
+  Videos page (with the reels), the Reviews section (Muse Reviews / Muse PR stories) and on product
+  pages that have a `video` field ("See it in motion").
+- **Every carousel slide** — all 25 posts were re-fetched at full resolution (1080px), including every
+  slide of the 12 carousels (`public/images/instagram/<code>-<n>.jpg`; `<code>.jpg` is slide 1).
+  Product `gallery` arrays now use the individual slides, so each Lilac Éclat ring, each Starlit
+  Grace earring and each Élan jhumka has its own photo. Pieces that only existed as slides or stories
+  were added to the catalogue: Pavé Solitaire Ring, Crystal Wings Ring, three Starlit Grace styles,
+  two Élan jhumkas, Pearl Choker Heart Set and Pearl Blossom Set (35 products).
+- The Heart Muse Anklet shows PKR 1,299, the one price the brand has published (anklets highlight).
+
 ## Motion
 
 `src/styles/_motion.scss` + `RevealObserver`: add `data-reveal` to any element to fade it up when it

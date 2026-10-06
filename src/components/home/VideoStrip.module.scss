@@ -7,8 +7,54 @@
   @include container;
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 20px;
+.scroller {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 6px 2px 18px;
+  margin-inline: -2px;
+  scrollbar-width: thin;
+  scrollbar-color: $lilac-300 transparent;
+}
+
+.item {
+  flex: 0 0 clamp(200px, 22vw, 250px);
+  scroll-snap-align: start;
+}
+
+.more {
+  flex: 0 0 clamp(200px, 22vw, 250px);
+  scroll-snap-align: start;
+  @include satin-deep;
+  border-radius: 22px;
+  color: $white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  text-align: center;
+  padding: 24px;
+  text-decoration: none;
+  transition: transform 0.3s $ease;
+
+  &:hover {
+    transform: translateY(-3px);
+  }
+}
+
+.moreNum {
+  @include display(56px);
+  line-height: 1;
+}
+
+.moreLink {
+  margin-top: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 700;
+  color: $gold-light;
 }

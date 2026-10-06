@@ -1,17 +1,32 @@
+import { Link } from 'react-router-dom'
+import Icon from '@/components/ui/Icon'
 import SectionHeading from '@/components/ui/SectionHeading'
-import ReelEmbed from '@/components/videos/ReelEmbed'
-import { featuredVideos } from '@/data/videos'
+import HighlightClip from '@/components/videos/HighlightClip'
+import { clips, featuredClips, videos } from '@/data/videos'
 import s from './VideoStrip.module.scss'
 
 export default function VideoStrip() {
   return (
     <section className={s.section} id="videos" aria-label="Videos">
       <div className={s.inner}>
-        <SectionHeading eyebrow="Watch" title="See the pieces move." linkTo="/videos" linkLabel="All videos" aside="Reels from @musebyanum: unboxings, styling and the collections up close." />
-        <div className={s.grid} data-reveal="stagger">
-          {featuredVideos.map((v) => (
-            <ReelEmbed key={v.code} video={v} />
+        <SectionHeading
+          eyebrow="Straight from the highlights"
+          title="See the pieces move."
+          linkTo="/videos"
+          linkLabel="All videos"
+          aside="Story clips saved from the @musebyanum highlights: the collections up close, on the wrist and in the mirror. Tap one to play it with sound."
+        />
+        <div className={s.scroller} data-reveal="stagger">
+          {featuredClips.map((c) => (
+            <HighlightClip key={c.slug} clip={c} compact className={s.item} />
           ))}
+          <Link to="/videos" className={s.more}>
+            <span className={s.moreNum}>{clips.length + videos.length}</span>
+            <span>videos in all</span>
+            <span className={s.moreLink}>
+              Watch them all <Icon name="arrow" size={16} />
+            </span>
+          </Link>
         </div>
       </div>
     </section>

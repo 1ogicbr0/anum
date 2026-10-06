@@ -40,3 +40,27 @@
   text-align: center;
   color: $muted;
 }
+
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.groupHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.groupTitle {
+  @include display(30px);
+  line-height: 1.1;
+}
+
+.groupNote {
+  font-size: 13px;
+  color: $muted;
+}

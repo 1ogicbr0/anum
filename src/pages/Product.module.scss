@@ -322,3 +322,33 @@
     padding: 12px 14px;
   }
 }
+
+.clipWrap {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 150px;
+  gap: 16px;
+  align-items: center;
+  background: $lilac-100;
+  border-radius: 20px;
+  padding: 14px 14px 14px 20px;
+}
+
+.clipHead {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.clipTitle {
+  @include display(26px);
+  line-height: 1.1;
+}
+
+.clipNote {
+  font-size: 13px;
+  color: $muted;
+}
+
+.clip {
+  width: 150px;
+}

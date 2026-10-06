@@ -16,7 +16,7 @@ export const collections = [
     slug: 'lilac-eclat',
     name: 'Lilac Éclat',
     image: '/images/instagram/DdMM6njinQ7.jpg',
-    tagline: 'Six rings. Six moods.',
+    tagline: 'Seven rings. Seven moods.',
     description:
       'Éclat means radiance, brilliance and sparkle. Timeless gold meets delicate crystal details, statement florals and elegant mother-of-pearl accents, designed for the girl who believes her jewellery should speak before she does.',
     tone: 'deep',
