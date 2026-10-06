@@ -145,7 +145,7 @@ h3 {
     width: 100%;
   }
 
-  // Instagram order buttons (any variant): Instagram's pink fades in on hover.
+  // Instagram order buttons (any variant): Instagram purple fades in on hover.
   &--instagram {
     position: relative;
     isolation: isolate;
@@ -156,7 +156,7 @@ h3 {
       position: absolute;
       inset: -1.5px;
       border-radius: inherit;
-      background: #ee2a7b; // Instagram's middle pink, flat
+      background: #8134af; // Instagram purple, flat
       opacity: 0;
       transition: opacity $dur $ease;
       z-index: -1;
@@ -166,7 +166,7 @@ h3 {
     &:focus-visible {
       color: $white;
       border-color: transparent;
-      box-shadow: 0 10px 24px rgba(#ee2a7b, 0.28);
+      box-shadow: 0 10px 24px rgba(#8134af, 0.3);
 
       &::before {
         opacity: 1;
