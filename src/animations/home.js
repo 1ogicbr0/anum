@@ -39,6 +39,11 @@ function textSkew(target, vars = {}) {
   const split = new SplitText(target, { type: 'words' })
   return gsap.from(split.words, { x: -34, skewX: 14, opacity: 0, duration: 0.8, ease: 'power3.out', stagger: 0.08, onComplete: () => split.revert(), ...vars })
 }
+// characters appear in a random order, like ink settling into a poem (collections)
+function textInk(target, vars = {}) {
+  const split = new SplitText(target, { type: 'words,chars' })
+  return gsap.from(split.chars, { opacity: 0, scale: 1.3, filter: 'blur(4px)', duration: 0.5, ease: 'power2.out', stagger: { each: 0.03, from: 'random' }, onComplete: () => split.revert(), ...vars })
+}
 // letters settle together (gold & silver)
 function textTrack(target, vars = {}) {
   return gsap.from(target, { letterSpacing: '0.18em', opacity: 0, duration: 1.1, ease: 'power3.out', ...vars })
@@ -61,33 +66,6 @@ function heading(el, effect, tl, at = 0) {
   if (title) tl.add(effect(title), at + 0.1)
   if (aside) tl.from(aside, { opacity: 0, y: 14, duration: 0.7 }, at + 0.35)
   if (link) tl.from(link, { opacity: 0, x: 16, duration: 0.6, clearProps: 'all' }, at + 0.4)
-}
-
-// Pointer tilt for a card (perspective is set lazily so entrance clearProps cannot wipe it).
-function tilt(card, amount = 6) {
-  let ready = false
-  const rx = gsap.quickTo(card, 'rotationX', { duration: 0.5, ease: 'power3' })
-  const ry = gsap.quickTo(card, 'rotationY', { duration: 0.5, ease: 'power3' })
-  const move = (e) => {
-    if (e.pointerType && e.pointerType !== 'mouse') return
-    if (!ready) {
-      gsap.set(card, { transformPerspective: 900 })
-      ready = true
-    }
-    const r = card.getBoundingClientRect()
-    ry(((e.clientX - r.left) / r.width - 0.5) * amount * 2)
-    rx(-((e.clientY - r.top) / r.height - 0.5) * amount * 2)
-  }
-  const leave = () => {
-    rx(0)
-    ry(0)
-  }
-  card.addEventListener('pointermove', move)
-  card.addEventListener('pointerleave', leave)
-  return () => {
-    card.removeEventListener('pointermove', move)
-    card.removeEventListener('pointerleave', leave)
-  }
 }
 
 // 1. Hero: masked headline, curtain-reveal photo, parallax layers, pointer tilt.
@@ -206,16 +184,43 @@ export function categories(el) {
   return () => offs.forEach((off) => off())
 }
 
-// 5. Collections: the featured edit swings in from the left, the others from the right; cards tilt under the pointer.
+// 5. Collections: the title settles in like ink, the featured edit unveils from the bottom, the four
+// cards unshutter diagonally one after another; cards lift and the arrow nudges on hover.
 export function collections(el) {
   const featured = one(el, '[data-anim=featured]')
   const cards = q(el, '[data-anim=card]')
   const tl = gsap.timeline({ scrollTrigger: enter(el) })
-  heading(el, textBlur, tl)
-  tl.from(featured, { x: -80, rotation: -3, opacity: 0, duration: 1.1, clearProps: stay }, 0.2)
-    .fromTo(one(featured, 'img'), { scale: 1.2, transition: 'none' }, { scale: 1, duration: 1.6, ease: 'expo.out', clearProps: 'all' }, 0.2)
-    .from(cards, { x: 80, rotation: 3, opacity: 0, duration: 0.9, stagger: 0.1, clearProps: stay }, 0.45)
-  const offs = [featured, ...cards].map((card) => tilt(card, 6))
+  heading(el, textInk, tl)
+  const fWrap = one(featured, '[data-anim=featuredImg]')
+  tl.from(featured, { opacity: 0, duration: 0.6 }, 0.2)
+    .fromTo(fWrap, { clipPath: 'inset(100% 0% 0% 0% round 24px)' }, { clipPath: 'inset(0% 0% 0% 0% round 24px)', duration: 1.2, ease: 'expo.out', clearProps: 'clipPath' }, 0.25)
+    .fromTo(one(fWrap, 'img'), { scale: 1.2, transition: 'none' }, { scale: 1, duration: 1.8, ease: 'expo.out', clearProps: 'all' }, 0.25)
+    .from(q(featured, '[data-anim=featuredBody] > *'), { y: 24, opacity: 0, duration: 0.7, stagger: 0.08 }, 0.6)
+  cards.forEach((card, i) => {
+    const wrap = one(card, '[data-anim=cardImg]')
+    const at = 0.5 + i * 0.12
+    tl.from(card, { opacity: 0, y: 30, duration: 0.6, clearProps: stay }, at)
+      .fromTo(wrap, { clipPath: 'inset(0% 100% 100% 0% round 20px)' }, { clipPath: 'inset(0% 0% 0% 0% round 20px)', duration: 1, ease: 'expo.out', clearProps: 'clipPath' }, at)
+      .fromTo(one(wrap, 'img'), { scale: 1.2, transition: 'none' }, { scale: 1, duration: 1.4, ease: 'expo.out', clearProps: 'all' }, at)
+      .from(q(card, '[data-anim=cardBody] > *'), { y: 12, opacity: 0, duration: 0.5, stagger: 0.08 }, at + 0.4)
+  })
+  const offs = [featured, ...cards].map((card) => {
+    const arrow = card.querySelector('svg')
+    const over = () => {
+      gsap.to(card, { y: -6, duration: 0.4 })
+      if (arrow) gsap.to(arrow, { x: 5, duration: 0.4, ease: 'back.out(2)' })
+    }
+    const out = () => {
+      gsap.to(card, { y: 0, duration: 0.5 })
+      if (arrow) gsap.to(arrow, { x: 0, duration: 0.4 })
+    }
+    card.addEventListener('pointerenter', over)
+    card.addEventListener('pointerleave', out)
+    return () => {
+      card.removeEventListener('pointerenter', over)
+      card.removeEventListener('pointerleave', out)
+    }
+  })
   return () => offs.forEach((off) => off())
 }
 
