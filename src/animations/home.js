@@ -18,11 +18,10 @@ function textLines(target, vars = {}) {
   const split = new SplitText(target, { type: 'lines', mask: 'lines' })
   return gsap.from(split.lines, { yPercent: 100, duration: 0.9, ease: 'power3.out', stagger: 0.1, onComplete: () => split.revert(), ...vars })
 }
-// words flip up on the x axis (gifting)
-function textFlip(target, vars = {}) {
+// words lift into place and cool from gold to plum (gifting)
+function textGold(target, vars = {}) {
   const split = new SplitText(target, { type: 'words' })
-  gsap.set(target, { perspective: 600 })
-  return gsap.from(split.words, { rotationX: -90, opacity: 0, transformOrigin: '50% 100%', duration: 0.8, ease: 'back.out(1.4)', stagger: 0.07, onComplete: () => split.revert(), ...vars })
+  return gsap.from(split.words, { y: 22, opacity: 0, color: '#C9A24A', duration: 0.9, ease: 'power3.out', stagger: 0.09, onComplete: () => split.revert(), ...vars })
 }
 // words sharpen into focus (collections, instagram, review quotes)
 function textBlur(target, vars = {}) {
@@ -269,15 +268,35 @@ export function goldSilver(el) {
   return () => offs.forEach((off) => off())
 }
 
-// 8. Gifting: chips pop in at random, the three cards are set down with a tilt, then the photos float.
+// 8. Gifting: the title lifts in and cools from gold to plum, the chips file in from the left, each
+// card's photo is unveiled from the top like a lid lifting, then the photos drift gently; cards lift on hover.
 export function gifting(el) {
+  const cards = q(el, '[data-anim=card]')
   const tl = gsap.timeline({ scrollTrigger: enter(el) })
-  heading(el, textFlip, tl)
-  tl.from(q(el, '[data-anim=chips] > *'), { scale: 0, opacity: 0, duration: 0.6, ease: 'back.out(2.5)', stagger: { each: 0.06, from: 'random' }, clearProps: 'all' }, 0.3)
-    .from(q(el, '[data-anim=card]'), { y: 70, opacity: 0, rotation: (i) => (i % 2 ? 4 : -4), transformOrigin: '50% 100%', duration: 1, stagger: 0.12, clearProps: stay }, 0.5)
-  tl.eventCallback('onComplete', () => {
-    q(el, '[data-anim=img]').forEach((img, i) => gsap.to(img, { y: -8, duration: 2.6 + i * 0.4, yoyo: true, repeat: -1, ease: 'sine.inOut', delay: i * 0.5 }))
+  heading(el, textGold, tl)
+  tl.from(q(el, '[data-anim=chips] > *'), { x: -18, opacity: 0, duration: 0.5, stagger: 0.07, clearProps: 'all' }, 0.3)
+  cards.forEach((card, i) => {
+    const wrap = one(card, '[data-anim=img]')
+    const at = 0.45 + i * 0.15
+    tl.from(card, { opacity: 0, y: 24, duration: 0.6, clearProps: stay }, at)
+      .fromTo(wrap, { clipPath: 'inset(0% 0% 100% 0% round 20px)' }, { clipPath: 'inset(0% 0% 0% 0% round 20px)', duration: 1, ease: 'expo.out', clearProps: 'clipPath' }, at)
+      .fromTo(one(wrap, 'img'), { scale: 1.15, transition: 'none' }, { scale: 1, duration: 1.4, ease: 'expo.out', clearProps: 'all' }, at)
+      .from(q(card, '[data-anim=body] > *'), { y: 12, opacity: 0, duration: 0.5, stagger: 0.08 }, at + 0.35)
   })
+  tl.eventCallback('onComplete', () => {
+    q(el, '[data-anim=img]').forEach((img, i) => gsap.to(img, { y: -6, duration: 2.8 + i * 0.4, yoyo: true, repeat: -1, ease: 'sine.inOut', delay: i * 0.5 }))
+  })
+  const offs = cards.map((card) => {
+    const over = () => gsap.to(card, { y: -6, duration: 0.4 })
+    const out = () => gsap.to(card, { y: 0, duration: 0.5 })
+    card.addEventListener('pointerenter', over)
+    card.addEventListener('pointerleave', out)
+    return () => {
+      card.removeEventListener('pointerenter', over)
+      card.removeEventListener('pointerleave', out)
+    }
+  })
+  return () => offs.forEach((off) => off())
 }
 
 // 9. Video strip: the clips are dealt out of a stack, fanning into the row.
