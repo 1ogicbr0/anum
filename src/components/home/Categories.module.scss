@@ -19,13 +19,13 @@
   align-items: center;
   justify-content: center;
   gap: 14px;
-  color: $plum;
+  color: $ink;
   font-weight: 600;
   font-size: 15px;
   transition: transform $dur $ease, color $dur $ease;
 
   svg {
-    color: $gold-deep;
+    color: $gold-text;
     transition: transform 0.35s $ease;
   }
 

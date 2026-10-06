@@ -3,7 +3,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  color: $plum;
+  color: $ink;
 }
 
 .link {
@@ -33,9 +33,9 @@
   width: 40px;
   height: 40px;
   border-radius: $radius-pill;
-  background: $white;
+  background: $surface;
   border: 0;
-  color: $plum;
+  color: $ink;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -71,7 +71,7 @@
 .name {
   font-size: 16px;
   font-weight: 600;
-  color: $plum;
+  color: $ink;
 }
 
 .row {

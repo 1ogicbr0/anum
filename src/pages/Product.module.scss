@@ -14,12 +14,12 @@
     color: $muted;
 
     &:hover {
-      color: $plum;
+      color: $ink;
     }
   }
 
   strong {
-    color: $plum;
+    color: $ink;
     font-weight: 500;
   }
 }
@@ -51,7 +51,7 @@
   position: absolute;
   top: 18px;
   left: 18px;
-  background: $white;
+  background: $surface;
   border-radius: $radius-pill;
   padding: 8px 14px;
   font-size: 11px;
@@ -94,7 +94,7 @@
   }
 
   &.on {
-    border-color: $plum;
+    border-color: $ink;
   }
 }
 
@@ -136,7 +136,7 @@
 }
 
 .panel {
-  background: $white;
+  background: $surface;
   border-radius: 22px;
   padding: 24px;
   display: flex;
@@ -186,7 +186,7 @@
   gap: 10px;
 
   svg {
-    color: $gold-deep;
+    color: $gold-text;
   }
 }
 
@@ -234,13 +234,13 @@
 
     &::before {
       content: '·';
-      color: $gold-deep;
+      color: $gold-text;
     }
   }
 }
 
 .related {
-  background: $white;
+  background: $surface;
   @include section;
 }
 
@@ -260,7 +260,7 @@
 
 .previewLabel {
   align-self: flex-start;
-  background: $white;
+  background: $surface;
   border-radius: $radius-pill;
   padding: 8px 14px;
   font-size: 11px;

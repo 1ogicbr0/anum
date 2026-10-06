@@ -82,6 +82,16 @@ The home signet section has a "Try your initials" box (up to three letters, lett
 engraves the ring preview beside it live; "Design your ring" carries the letters to the product page
 as `?initials=`, where the engraving field starts with them.
 
+## Dark theme
+
+Colours that change between themes are CSS variables defined in `src/styles/_base.scss` (`:root`
+for light, `:root[data-theme='dark']` for dark) and exposed to SCSS as tokens: `$bg`, `$surface`,
+`$ink`, `$muted`, `$link`, `$gold-text`, `$lilac-100/200/300`, `$line`, the satin gradient and the
+shadows. `$plum`, `$purple`, the golds and `$white` are fixed in both themes (dark bands, buttons,
+text on dark). `ThemeToggle` in the header flips `data-theme` on `<html>` and stores the choice in
+localStorage (`muse-theme`); a small inline script in `index.html` applies the saved or system
+preference before first paint so there is no flash.
+
 ## Motion
 
 `src/styles/_motion.scss` + `RevealObserver`: add `data-reveal` to any element to fade it up when it

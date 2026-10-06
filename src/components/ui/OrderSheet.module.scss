@@ -22,7 +22,7 @@
   max-width: 560px;
   max-height: 92vh;
   overflow: auto;
-  background: $white;
+  background: $surface;
   border-radius: 28px 28px 0 0;
   padding: 28px 22px 26px;
   display: flex;
@@ -45,7 +45,7 @@
   border-radius: 50%;
   border: 0;
   background: $lilac-100;
-  color: $plum;
+  color: $ink;
   display: grid;
   place-items: center;
   cursor: pointer;
@@ -72,7 +72,7 @@
   font-family: inherit;
   font-size: 14px;
   line-height: 1.6;
-  color: $plum;
+  color: $ink;
   user-select: all;
 }
 

@@ -40,7 +40,7 @@
 }
 
 .story {
-  background: $white;
+  background: $surface;
   border-radius: $radius-xl;
   padding: clamp(28px, 4vw, 56px);
   display: grid;
@@ -74,7 +74,7 @@
   gap: 10px;
 
   svg {
-    color: $gold-deep;
+    color: $gold-text;
   }
 }
 
@@ -96,7 +96,7 @@
 }
 
 .policyCard {
-  background: $white;
+  background: $surface;
   border-radius: $radius-lg;
   padding: 28px;
   display: flex;

@@ -57,7 +57,7 @@
 
 // Surfaces
 @mixin satin {
-  background: linear-gradient(135deg, #ede5f8 0%, #d8c9ef 38%, #e6dbf5 62%, #cfbde9 100%);
+  background: linear-gradient(135deg, var(--satin-a) 0%, var(--satin-b) 38%, var(--satin-c) 62%, var(--satin-d) 100%);
 }
 
 @mixin satin-deep {

@@ -1,5 +1,5 @@
 .section {
-  background: $white;
+  background: $surface;
   @include section;
 }
 
@@ -37,7 +37,7 @@
 }
 
 .box {
-  background: $white;
+  background: $surface;
   border: 1px solid $lilac-200;
   color: $purple;
 }

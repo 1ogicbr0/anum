@@ -1,5 +1,5 @@
 .section {
-  background: $white;
+  background: $surface;
   @include section;
 }
 
@@ -21,7 +21,7 @@
   position: relative;
   border-radius: 14px;
   overflow: hidden;
-  color: $plum;
+  color: $ink;
   display: block;
 
   &:hover .caption {

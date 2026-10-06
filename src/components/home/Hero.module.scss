@@ -26,7 +26,7 @@
     content: '';
     width: 28px;
     height: 1px;
-    background: $gold-deep;
+    background: $gold-text;
   }
 }
 
@@ -63,7 +63,7 @@
   }
 
   svg {
-    color: $gold-deep;
+    color: $gold-text;
   }
 }
 
@@ -92,7 +92,7 @@
 .card {
   border-radius: 22px;
   min-height: 220px;
-  background: $white;
+  background: $surface;
   padding: 24px;
   display: flex;
   flex-direction: column;

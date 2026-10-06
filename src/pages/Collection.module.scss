@@ -14,12 +14,12 @@
     color: $muted;
 
     &:hover {
-      color: $plum;
+      color: $ink;
     }
   }
 
   strong {
-    color: $plum;
+    color: $ink;
     font-weight: 500;
   }
 }
@@ -102,10 +102,10 @@
 
 .card {
   @include card;
-  background: $white;
+  background: $surface;
   display: flex;
   flex-direction: column;
-  color: $plum;
+  color: $ink;
 }
 
 .cardImg {
@@ -134,7 +134,7 @@
 
 .orderBand {
   margin-top: 40px;
-  background: $white;
+  background: $surface;
   border-radius: $radius-lg;
   padding: 28px clamp(20px, 3vw, 40px);
   display: flex;

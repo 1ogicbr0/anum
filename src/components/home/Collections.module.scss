@@ -1,5 +1,5 @@
 .section {
-  background: $white;
+  background: $surface;
   @include section;
 }
 
@@ -19,7 +19,7 @@
   background: $lilac-100;
   display: flex;
   flex-wrap: wrap;
-  color: $plum;
+  color: $ink;
 }
 
 .featuredImg {
@@ -61,7 +61,7 @@
   background: $lilac-100;
   display: flex;
   flex-direction: column;
-  color: $plum;
+  color: $ink;
 }
 
 .card:hover :global(img),

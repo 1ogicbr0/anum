@@ -14,12 +14,12 @@
     color: $muted;
 
     &:hover {
-      color: $plum;
+      color: $ink;
     }
   }
 
   strong {
-    color: $plum;
+    color: $ink;
     font-weight: 500;
   }
 }
@@ -85,13 +85,13 @@
   align-items: center;
   gap: 10px;
   font-weight: 500;
-  color: $plum;
+  color: $ink;
 
   select {
     min-height: 44px;
     border-radius: $radius-pill;
     border: 1px solid #d3c7e8;
-    background: $white;
+    background: $surface;
     padding: 0 16px;
     font-size: 14px;
   }
@@ -103,7 +103,7 @@
 }
 
 .orderInner {
-  background: $white;
+  background: $surface;
   border-radius: $radius-lg;
   padding: 28px clamp(20px, 3vw, 40px);
   display: flex;

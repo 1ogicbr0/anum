@@ -1,30 +1,73 @@
 @use 'abstracts' as *;
 
+// Themes. The light values are the brand palette; dark keeps the plum and gold and lifts the
+// text. Toggled by ThemeToggle through data-theme on <html>; index.html applies the saved
+// choice before first paint.
 :root {
+  color-scheme: light;
   --plum: #{$plum};
   --purple: #{$purple};
-  --lilac-100: #{$lilac-100};
-  --lilac-200: #{$lilac-200};
   --gold: #{$gold};
-  --gold-deep: #{$gold-deep};
-  --muted: #{$muted};
+  --bg: #f6f2fb;
+  --bg-rgb: 246 242 251;
+  --surface: #ffffff;
+  --surface-2: #fbf9fe;
+  --ink: #2b2140;
+  --muted: #5e5473;
+  --link: #5b3fa6;
+  --gold-text: #8c6a24;
+  --gold-deep: #8c6a24;
+  --lilac-100: #f6f2fb;
+  --lilac-200: #e3d9f2;
+  --lilac-300: #d3c3ec;
+  --line: #efeaf6;
+  --satin-a: #ede5f8;
+  --satin-b: #d8c9ef;
+  --satin-c: #e6dbf5;
+  --satin-d: #cfbde9;
+  --shadow-card: 0 18px 40px rgba(43, 33, 64, 0.12);
+  --shadow-pop: 0 24px 60px rgba(43, 33, 64, 0.18);
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --bg: #14101d;
+  --bg-rgb: 20 16 29;
+  --surface: #1e1730;
+  --surface-2: #261d3b;
+  --ink: #f1ecf9;
+  --muted: #b3a7cb;
+  --link: #c2adf2;
+  --gold-text: #e6c87a;
+  --gold-deep: #e6c87a;
+  --lilac-100: #251c39;
+  --lilac-200: #372c52;
+  --lilac-300: #46395f;
+  --line: #2d2443;
+  --satin-a: #2b2144;
+  --satin-b: #372b55;
+  --satin-c: #2f2549;
+  --satin-d: #3e3163;
+  --shadow-card: 0 18px 40px rgba(0, 0, 0, 0.45);
+  --shadow-pop: 0 24px 60px rgba(0, 0, 0, 0.6);
 }
 
 body {
   font-family: $font-body;
   font-size: 16px;
   line-height: 1.6;
-  color: $plum;
-  background: $lilac-100;
+  color: $ink;
+  background: $bg;
+  transition: background 0.35s $ease, color 0.35s $ease;
 }
 
 a {
-  color: $purple;
+  color: $link;
   text-decoration: none;
   transition: color $dur $ease;
 
   &:hover {
-    color: $plum;
+    color: $ink;
   }
 
   @include focus-ring;
@@ -95,8 +138,8 @@ h3 {
 
   &--outline {
     background: transparent;
-    color: $plum;
-    border-color: $plum;
+    color: $ink;
+    border-color: $ink;
 
     &:hover {
       background: $plum;
@@ -188,23 +231,23 @@ h3 {
   padding: 0 16px;
   border-radius: $radius-pill;
   border: 1.5px solid $lilac-200;
-  background: $white;
-  color: $plum;
+  background: $surface;
+  color: $ink;
   font-size: 13px;
   font-weight: 500;
   cursor: pointer;
   transition: border-color $dur $ease, background $dur $ease, color $dur $ease;
 
   &:hover {
-    border-color: $plum;
-    color: $plum;
+    border-color: $ink;
+    color: $ink;
   }
 
   &--on,
   &[aria-pressed='true'] {
     background: $plum;
     color: $white;
-    border-color: $plum;
+    border-color: $ink;
   }
 }
 
@@ -213,10 +256,10 @@ h3 {
   width: 100%;
   border-radius: 14px;
   border: 1.5px solid #d3c7e8;
-  background: $white;
+  background: $surface;
   padding: 0 16px;
   font-size: 15px;
-  color: $plum;
+  color: $ink;
 
   &::placeholder {
     color: #9a90b0;

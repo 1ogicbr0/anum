@@ -1,0 +1,38 @@
+.toggle {
+  position: relative;
+  overflow: hidden;
+}
+
+// The sun and moon swap with a little roll.
+.icons {
+  position: relative;
+  display: block;
+  width: 20px;
+  height: 20px;
+
+  svg {
+    position: absolute;
+    inset: 0;
+    transition: transform 0.45s $ease, opacity 0.3s $ease;
+  }
+
+  svg:nth-child(1) {
+    transform: rotate(0) scale(1);
+    opacity: 1;
+  }
+
+  svg:nth-child(2) {
+    transform: rotate(-90deg) scale(0.5);
+    opacity: 0;
+  }
+
+  :root[data-theme='dark'] & svg:nth-child(1) {
+    transform: rotate(90deg) scale(0.5);
+    opacity: 0;
+  }
+
+  :root[data-theme='dark'] & svg:nth-child(2) {
+    transform: rotate(0) scale(1);
+    opacity: 1;
+  }
+}

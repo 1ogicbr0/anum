@@ -4,6 +4,7 @@ import Icon from '@/components/ui/Icon'
 import Wordmark from '@/components/ui/Wordmark'
 import Button from '@/components/ui/Button'
 import OrderButton from '@/components/ui/OrderButton'
+import ThemeToggle from '@/components/ui/ThemeToggle'
 import { useWishlist } from '@/hooks/useWishlist'
 import { orderLabel } from '@/utils/order'
 import s from './Header.module.scss'
@@ -59,6 +60,7 @@ export default function Header() {
         </nav>
 
         <div className={s.actions}>
+          <ThemeToggle className={s.iconBtn} />
           <button className={s.iconBtn} type="button" aria-label="Search" aria-expanded={searching} onClick={() => setSearching((v) => !v)}>
             <Icon name="search" />
           </button>

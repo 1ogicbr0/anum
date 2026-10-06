@@ -10,7 +10,7 @@
 }
 
 .card {
-  background: $white;
+  background: $surface;
   border-radius: $radius-md + 2px;
   padding: 28px;
   display: flex;
@@ -33,7 +33,7 @@
   letter-spacing: 0.1em;
   text-transform: uppercase;
   font-weight: 600;
-  color: $gold-deep;
+  color: $gold-text;
 }
 
 .quote {
@@ -108,7 +108,7 @@
 
 .storyPhoto {
   @include card;
-  background: $white;
+  background: $surface;
   display: flex;
   flex-direction: column;
   border-radius: 22px;
