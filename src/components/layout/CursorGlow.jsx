@@ -4,8 +4,9 @@ import s from './CursorGlow.module.scss'
 
 /**
  * A soft purple glow that trails the mouse. Only on devices with a real pointer
- * (never on touch), it sits above the page but ignores clicks, fades out when the
- * pointer leaves the window and swells a little over links and buttons.
+ * (never on touch), it sits behind the page content (above the section backgrounds,
+ * below cards, photos and text), fades out when the pointer leaves the window and
+ * swells a little over links and buttons.
  */
 export default function CursorGlow() {
   const ref = useRef(null)

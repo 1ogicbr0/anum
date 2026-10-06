@@ -7,7 +7,9 @@
   margin: -180px 0 0 -180px;
   border-radius: 50%;
   pointer-events: none;
-  z-index: 9999;
+  // Above section backgrounds, below the page content (see main > * > * in _base.scss), so the
+  // light sits behind the cards, photos and text rather than over them.
+  z-index: 1;
   opacity: 0;
   background: radial-gradient(circle, rgba($lilac-500, 0.42) 0%, rgba($purple, 0.2) 30%, rgba($purple, 0) 68%);
   filter: blur(18px);
